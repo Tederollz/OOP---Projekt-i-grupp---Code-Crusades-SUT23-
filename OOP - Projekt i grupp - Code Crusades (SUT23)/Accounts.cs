@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    internal class Accounts
+    public class Accounts
     {
         public string Name { get; set; }
         public decimal Balance { get; set; }
@@ -16,6 +16,5 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Name = name;
             Balance = balance;
         }
-        
     }
 }

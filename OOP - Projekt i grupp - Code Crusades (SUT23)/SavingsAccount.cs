@@ -17,7 +17,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static Accounts CreateSavingsAccount(string name, decimal insert)
         {
-            name = "SavingsAccount";
+            name = "Savings Account";
 
             return new Accounts(name, insert);
         }

@@ -43,7 +43,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.WriteLine($"\n\tInloggning lyckades. Välkommen!" +
                         "\n\tTryck \"Enter\" för att Fortsätta ");
                     Console.ReadKey();
-                    //Menu();
+                    //Menu(currentUser);
                 }
                 else
                 {

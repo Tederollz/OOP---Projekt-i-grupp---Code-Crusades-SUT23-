@@ -16,7 +16,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static List<Customer> CreateCustomerList()
         {
-            return new List<Customer> 
+            return new List<Customer>
         {
             new Customer("JohnDoe", "1234", false)
             {

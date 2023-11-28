@@ -8,30 +8,30 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class Transfer : Customer
     {
-      
+
         public decimal Balance { get; set; }
-        
-            public Transfer()
-            
-            {
+
+        public Transfer(decimal balance, string account)
+
+        {
             Accounts = account;
             Balance = balance;
-            }
+        }
     }
 
-    
-    
-    public void TransferMoney(double amount, BankAccount targetAccount)
+
+
+    public void TransferMoney(decimal amount, Transfer destinationAccount)
     {
         if (amount > 0 && Balance >= amount)
         {
             Balance -= amount;
-            targetAccount.Balance += amount;
-            Console.WriteLine($"Överfört: {amount} SEK ifrån: {Account} till kontot: {targetAccount.Account}");
+            destinationAccount.Balance += amount;
+            Console.WriteLine($"Överfört: {amount} SEK från: {Account} till kontot: {destinationAccount.Account}");
         }
         else
         {
-            Console.WriteLine("Du har inte tillräckligt med täcking för att överföra");
+            Console.WriteLine("Du har inte tillräckligt med täckning för att överföra");
         }
     }
 }

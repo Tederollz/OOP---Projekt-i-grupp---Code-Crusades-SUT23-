@@ -8,30 +8,35 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class Transfer : Customer
     {
-
         public decimal Balance { get; set; }
+        public string SourceAccountType { get; set; }
+        public string DestinationAccountType { get; set; }
 
-        public Transfer(decimal balance, string account)
-
+        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance)
         {
-            Accounts = account;
+            SourceAccountType = sourceAccountType;
+            DestinationAccountType = destinationAccountType;
             Balance = balance;
         }
-    }
 
-
-
-    public void TransferMoney(decimal amount, Transfer destinationAccount)
-    {
-        if (amount > 0 && Balance >= amount)
+        public void TransferMoney(Customer sourceCustomer)
         {
-            Balance -= amount;
-            destinationAccount.Balance += amount;
-            Console.WriteLine($"Överfört: {amount} SEK från: {Account} till kontot: {destinationAccount.Account}");
-        }
-        else
-        {
-            Console.WriteLine("Du har inte tillräckligt med täckning för att överföra");
+            // Hitta källkonto
+            Account sourceAccount = sourceCustomer.Accounts.Find(acc => acc.AccountType == SourceAccountType);
+
+            // Hitta målkonto (destination)
+            Account destinationAccount = Accounts.Find(acc => acc.AccountType == DestinationAccountType);
+
+            if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
+            {
+                sourceAccount.Balance -= Balance;
+                destinationAccount.Balance += Balance;
+                Console.WriteLine($"Överfört: {Balance} SEK från konto: {sourceAccount.AccountType} till kontot: {destinationAccount.AccountType}");
+            }
+            else
+            {
+                Console.WriteLine("Överföring misslyckades. Kontrollera att du har tillräckligt med täckning och att kontona är giltiga.");
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             decimal insert = 10000;
             string name = "Annas Bakkonto";
-            currentuser.Accounts.Add(new Accounts(name, insert));
+            currentuser.Accounts.Add(new CheckingAccount(name, insert));
         }
     }
 }

@@ -10,6 +10,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public List<Accounts> Accounts { get; set; }
 
+
         public Customer(string username, string pin, bool role) : base(username, pin, role)
         {
             Accounts = new List<Accounts>();

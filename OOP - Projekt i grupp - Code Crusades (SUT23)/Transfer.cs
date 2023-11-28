@@ -8,16 +8,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class Transfer : Customer
     {
-        public List<Accounts> Accounts;
+      
         public decimal Balance { get; set; }
+        
+            public Transfer()
+            
+            {
+            Accounts = account;
+            Balance = balance;
+            }
     }
 
-    public BankAccount(string account, double balance)
-    {
-        Accounts = account;
-        Balance = balance;
-    }
-
+    
+    
     public void TransferMoney(double amount, BankAccount targetAccount)
     {
         if (amount > 0 && Balance >= amount)

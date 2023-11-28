@@ -15,11 +15,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             InterestRate = interestRate;
 
         }
-        public static Accounts CreateSavingsAccount(string name, decimal insert)
+        public static void CreateSavingsAccount(Customer currentuser)
         {
-            name = "Savings Account";
-
-            return new Accounts(name, insert);
+            decimal insert = 10000;
+            string name = "Annas Sparkonto";
+            currentuser.Accounts.Add(new Accounts(name, insert));
         }
     }
 }

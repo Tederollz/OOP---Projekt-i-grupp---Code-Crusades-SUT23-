@@ -13,10 +13,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
 
         }
-        public static Accounts CreateAccount(string name, decimal insert)
+        public static void CreateAccount(Customer currentuser)
         {
-            name = "Checking Account";
-            return new Accounts(name, insert);
+            decimal insert = 10000;
+            string name = "Annas Bakkonto";
+            currentuser.Accounts.Add(new Accounts(name, insert));
         }
     }
 }

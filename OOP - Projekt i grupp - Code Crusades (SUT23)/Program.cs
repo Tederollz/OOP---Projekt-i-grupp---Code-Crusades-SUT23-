@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Accounts.Login();
+            User.Login();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    internal class VeiwAccounts : Customer
+    internal class VeiwAccounts 
     {
         internal class ViewAccounts
         {
@@ -16,16 +16,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
 
 
-        public static void ShowAccounts()
-        {
-
-            Console.WriteLine("Översikt: Konton");
-            foreach (var accounts in Accounts)
-                
-            {
-                Console.WriteLine($"Account: {account.Accounts}, Saldo: {account.Balance} SEK");
-            }
-        }
+       
 
 
 

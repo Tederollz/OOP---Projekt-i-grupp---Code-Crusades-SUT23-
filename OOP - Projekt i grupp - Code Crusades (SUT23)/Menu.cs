@@ -62,9 +62,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             Console.WriteLine("Låneförfrågan");
                             break;
                         case 5:
-                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta");
+                            Console.WriteLine("Du logags ut\nTryck Enter för att");
                             Console.Read();
-                            Environment.Exit(1);
+                            User.Login();
                             break;
                     }
                 }

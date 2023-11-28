@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    internal class VeiwAccounts
+    internal class VeiwAccounts : Customer
     {
         internal class ViewAccounts
         {
+            
 
 
         }
@@ -19,7 +20,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
 
             Console.WriteLine("Översikt: Konton");
-            foreach (var account in Accounts)
+            foreach (var accounts in Accounts)
+                
             {
                 Console.WriteLine($"Account: {account.Accounts}, Saldo: {account.Balance} SEK");
             }

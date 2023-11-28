@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    internal class Transfer
+    internal class Transfer : Customer
     {
-        public string Account { get; set; }
+        public List<Accounts> Accounts;
         public decimal Balance { get; set; }
     }
 
     public BankAccount(string account, double balance)
     {
-        Account = account;
+        Accounts = account;
         Balance = balance;
     }
 

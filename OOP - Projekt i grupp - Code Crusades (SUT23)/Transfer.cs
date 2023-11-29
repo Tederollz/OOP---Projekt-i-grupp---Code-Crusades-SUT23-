@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using test;
@@ -60,22 +61,24 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             // Hitta målkonto
             Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == destinationAccountType);
 
-            if (sourceAccount != null || destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
+            if (sourceAccount != null && destinationAccount != null && amount > 0 && sourceAccount.Balance >= amount)
             {
-                sourceAccount.Balance -= Balance;
-                destinationAccount.Balance += Balance;
-                Console.WriteLine($"Överfört: {Balance} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+                sourceAccount.Balance -= amount;
+                destinationAccount.Balance += amount;
+                Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
             }
             else
             {
-                Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
+                Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning eller ogiltigt belopp.");
             }
+            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
+            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
+            
 
-            Console.WriteLine($"Källkonto balans: {sourceAccount.Balance}, Målkonto balans: {destinationAccount.Balance}");
         }
+        
     }
-    }
-
+}
 
 
 

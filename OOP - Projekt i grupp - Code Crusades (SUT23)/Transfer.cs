@@ -54,12 +54,13 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 return;
             }
 
-
             // Hitta källkonto
-            Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == SourceAccountType);
+            Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == sourceAccountType);
 
             // Hitta målkonto
-            Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == DestinationAccountType);
+            Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == destinationAccountType);
+
+
 
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
             {
@@ -69,9 +70,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
             else
             {
-                Console.WriteLine("Överföring misslyckades. Kontrollera att du har tillräckligt med täckning och att kontona är giltiga.");
+                Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
             }
+
+
+
+            Console.WriteLine($"Källkonto balans: {sourceAccount.Balance}, Målkonto balans: {destinationAccount.Balance}");
+
+
         }
     }
-
 }
+
+
+
+

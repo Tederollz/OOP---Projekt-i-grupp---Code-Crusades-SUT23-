@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using test;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
@@ -11,19 +12,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public string Username { get; set; }
         public string Pin { get; set; }
         public bool Role { get; set; }
-        public static User CurrentUser { get; set; }
+        public List<Accounts> Accounts { get; set; }
 
         public User(string username, string pin, bool role)
         {
             Username = username;
             Pin = pin;
             Role = role;
+            Accounts = new List<Accounts>();
         }
         public static void Login()
         {
             List<Customer> customers = Customer.CreateCustomerList();
             int loginAttempts = 0;
-            User currentUser = null;
 
             Console.Clear();
             Console.WriteLine("\n\tVälkommen till Bankomaten!");
@@ -39,13 +40,13 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
                 if (UserLogin != null)
                 {
-                    currentUser = UserLogin;
+                    UserContext.CurrentUser = UserLogin;
                     loginAttempts = 0;
                     Console.WriteLine($"\n\tInloggning lyckades. Välkommen!" +
                         "\n\tTryck \"Enter\" för att Fortsätta ");
                     Console.ReadKey();
 
-      
+
 
                     Menu.startMenuForUser();
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
+    /*
     internal class Transfer : Customer
     { // behöver ändras om lite i customerklassen där kontonen finns eller mina source och destination för att träffa rätt.
         public decimal Balance { get; set; }
@@ -39,4 +40,5 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
         }
     }
+    */
 }

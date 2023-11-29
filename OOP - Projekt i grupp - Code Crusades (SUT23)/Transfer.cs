@@ -60,8 +60,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             // Hitta målkonto
             Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == destinationAccountType);
 
-
-
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
             {
                 sourceAccount.Balance -= Balance;
@@ -73,14 +71,10 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
             }
 
-
-
             Console.WriteLine($"Källkonto balans: {sourceAccount.Balance}, Målkonto balans: {destinationAccount.Balance}");
-
-
         }
     }
-}
+    }
 
 
 

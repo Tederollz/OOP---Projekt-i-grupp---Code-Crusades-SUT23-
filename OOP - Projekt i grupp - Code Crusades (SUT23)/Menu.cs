@@ -61,6 +61,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         break;
                     case 1:
                         Console.WriteLine("Överföring");
+                        Transfer.TransferMoney();
                         break;
                     case 2:
                         Console.WriteLine("Öppna nytt konto");

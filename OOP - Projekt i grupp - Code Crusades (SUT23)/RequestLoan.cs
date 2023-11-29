@@ -9,7 +9,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class RequestLoan
     {
-        public static decimal InterestRate = 0.05m;
+        public static decimal InterestRate = 0.05m;     //A decimal to control the interest rate
 
 
         public static void Loan()
@@ -28,7 +28,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         Console.WriteLine($"Räntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}sek");                        
                         Loan newLoan = new Loan(loanInput, InterestRate);
                         UserContext.CurrentUser.AddLoan(newLoan);
-                        depositLoan(loanInput);
+                        DepositLoan(loanInput);
                         
                     } else
                     {
@@ -45,7 +45,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             return loanAmount * InterestRate;
         }
-        public static void depositLoan(decimal loanAmount)
+        public static void DepositLoan(decimal loanAmount)
         {
             Console.WriteLine("På vilket konto vill du sätta in pengarna?");
 
@@ -81,6 +81,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.Clear();
             Menu.startMenuForUser();
 
+        }
+
+        public static void UpdateInterest()
+        {
+            Console.WriteLine("Ange den nya räntesatsen (som en procent, t.ex. 5 för 5%):");
+            if (decimal.TryParse(Console.ReadLine(), out decimal input) && input >= 0 && input <= 100)
+            {
+                InterestRate = input / 100;
+                Console.WriteLine($"Räntesatsen har uppdaterats till {InterestRate * 100}%.");
+            } else
+            {
+                Console.WriteLine("Felaktig inmatning, ange ett värde mellan 0 och 100.");
+            }
         }
     }
 }

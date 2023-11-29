@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    public class Loan
+    public class Loan       //A class for creating new loans
     {
         public decimal Amount { get; set; }
         public decimal Interest { get; set; }

@@ -38,8 +38,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
             else
             {
-            decimal interestRate = 2;
-            UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
+                decimal sum;
+                decimal interestRate = 2;
+                sum = insert * interestRate / 100;
+                Console.WriteLine($"Din ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum}Kr.");
+                UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
             }
             Console.ReadKey();
 

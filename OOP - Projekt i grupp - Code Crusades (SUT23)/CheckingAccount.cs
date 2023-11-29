@@ -17,9 +17,26 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static void CreateAccount()
         {
-            decimal insert = 10000;
-            string name = "Annas Bakkonto";
-            UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert));
+            Console.WriteLine("Vad vill du döpa ditt konto till?");
+            string name = Console.ReadLine();
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "No name added";
+            }
+            Console.WriteLine("Hur mycket vill du sätta in?");
+            string input = Console.ReadLine();
+            decimal insert;
+            if (!decimal.TryParse(input, out insert) || insert < 0)
+            {
+                Console.WriteLine("Du kan inte sätta in negativt belopp");
+                insert = 0;
+            }
+            else
+            {
+                
+                UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert));
+            }
+            Console.ReadKey();
         }
     }
 }

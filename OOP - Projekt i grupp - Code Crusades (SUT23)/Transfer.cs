@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using test;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
 
     internal class Transfer : Customer
-    { // behöver ändras om lite i customerklassen där kontonen finns eller mina source och destination för att träffa rätt.
-        public decimal Balance { get; set; }
-        public string SourceAccountType { get; set; }
-        public string DestinationAccountType { get; set; }
+    {
+        public static decimal Balance { get; set; }
+        public static string SourceAccountType { get; set; }
+        public static string DestinationAccountType { get; set; }
 
         public Transfer(string sourceAccountType, string destinationAccountType, decimal balance) : base("TransferCustomer", "", false)
         {
@@ -20,13 +21,13 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Balance = balance;
         }
 
-        public void TransferMoney(Customer sourceCustomer)
+        public static void TransferMoney()
         {
-            Hitta källkonto
-            Accounts sourceAccount = sourceCustomer.Accounts.Find(acc => acc.Name == SourceAccountType);
+            // Hitta källkonto
+            Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == SourceAccountType);
 
-            Hitta målkonto
-            Accounts destinationAccount = Accounts.Find(acc => acc.Name == DestinationAccountType);
+            // Hitta målkonto
+            Accounts destinationAccount = UserContext.TargetUser.Accounts.Find(acc => acc.Name == DestinationAccountType);
 
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
             {

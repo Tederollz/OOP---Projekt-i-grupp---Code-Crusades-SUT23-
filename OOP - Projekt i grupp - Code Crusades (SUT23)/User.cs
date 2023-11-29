@@ -11,6 +11,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public string Username { get; set; }
         public string Pin { get; set; }
         public bool Role { get; set; }
+        public static User CurrentUser { get; set; }
 
         public User(string username, string pin, bool role)
         {
@@ -43,7 +44,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.WriteLine($"\n\tInloggning lyckades. Välkommen!" +
                         "\n\tTryck \"Enter\" för att Fortsätta ");
                     Console.ReadKey();
-                    //Menu(currentUser);
+
+      
+
+                    Menu.startMenuForUser();
+
                 }
                 else
                 {

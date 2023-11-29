@@ -13,6 +13,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
 
         }
+
+        public void AddLoan(Loan loan)
+        {
+            Loans.Add(loan);
+        }
         public static List<Customer> CreateCustomerList()
         {
             return new List<Customer>

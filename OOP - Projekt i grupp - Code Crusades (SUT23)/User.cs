@@ -27,7 +27,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static void Login()
         {
-            List<Customer> customers = Customer.CreateCustomerList();
             int loginAttempts = 0;
 
             Console.Clear();
@@ -40,7 +39,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.Write("\n\tAnge din pinkod: ");
                 string pin = Console.ReadLine();
 
-                User UserLogin = customers.Find(u => u.Username == username && u.Pin == pin);
+                User UserLogin = Start.CustomerList.Find(u => u.Username == username && u.Pin == pin);
 
                 if (UserLogin != null)
                 {

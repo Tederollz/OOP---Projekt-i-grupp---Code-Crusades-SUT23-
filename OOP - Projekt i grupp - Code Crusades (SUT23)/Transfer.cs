@@ -12,7 +12,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public string SourceAccountType { get; set; }
         public string DestinationAccountType { get; set; }
 
-        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance)
+        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance): base("TransferCustomer", "", false)
         {
             SourceAccountType = sourceAccountType;
             DestinationAccountType = destinationAccountType;
@@ -22,16 +22,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public void TransferMoney(Customer sourceCustomer)
         {
             // Hitta källkonto
-            Account sourceAccount = sourceCustomer.Accounts.Find(acc => acc.AccountType == SourceAccountType);
+            Accounts sourceAccount = sourceCustomer.Accounts.Find(acc => acc.Name == SourceAccountType);
 
             // Hitta målkonto
-            Account destinationAccount = Accounts.Find(acc => acc.AccountType == DestinationAccountType);
+            Accounts destinationAccount = Accounts.Find(acc => acc.Name == DestinationAccountType);
 
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
             {
                 sourceAccount.Balance -= Balance;
                 destinationAccount.Balance += Balance;
-                Console.WriteLine($"Överfört: {Balance} SEK från konto: {sourceAccount.AccountType} till kontot: {destinationAccount.AccountType}");
+                Console.WriteLine($"Överfört: {Balance} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
             }
             else
             {

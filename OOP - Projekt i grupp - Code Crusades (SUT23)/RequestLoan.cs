@@ -31,7 +31,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         decimal interest = CalculateInterest(loanInput);
                         Console.WriteLine($"Du kommer att behöva betala {interest} i ränta.");
                         Loan newLoan = new Loan(loanInput, InterestRate);
-                        customer.AddLoan(newLoan);
+                        //customer.AddLoan(newLoan);
                         depositLoan(customer);
                         break;
                     } else

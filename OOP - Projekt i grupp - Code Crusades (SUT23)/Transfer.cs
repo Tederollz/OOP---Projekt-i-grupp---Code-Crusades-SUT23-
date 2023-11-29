@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class Transfer : Customer
-    {
+    { // behöver ändras om lite i customerklassen där kontonen finns eller mina source och destination för att träffa rätt.
         public decimal Balance { get; set; }
         public string SourceAccountType { get; set; }
         public string DestinationAccountType { get; set; }
@@ -24,7 +24,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             // Hitta källkonto
             Account sourceAccount = sourceCustomer.Accounts.Find(acc => acc.AccountType == SourceAccountType);
 
-            // Hitta målkonto (destination)
+            // Hitta målkonto
             Account destinationAccount = Accounts.Find(acc => acc.AccountType == DestinationAccountType);
 
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)

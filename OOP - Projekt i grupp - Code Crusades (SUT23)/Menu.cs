@@ -20,29 +20,35 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tsätt Valutakurs");
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
-                int menuSelected = startMenuCustomer(Menulist);
-                switch (menuSelected)
+                while (true)
                 {
-                    case 0:
-                        Console.WriteLine("Ny användare");
-                        break;
-                    case 1:
-                        Console.WriteLine("sätt valuta");
-                        break;
-                    case 2:
-                        Console.WriteLine("Du loggas ut\nTryck Enter");
-                        Console.Read();
-                        User.Login();
-                        break;
-                    case 3:
-                        Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                        Console.Read();
-                        Environment.Exit(0);
-                        break;
+
+                    int menuSelected = startMenuCustomer(Menulist);
+                    switch (menuSelected)
+                    {
+                        case 0:
+                            Console.WriteLine("Ny användare");
+                            break;
+                        case 1:
+                            Console.WriteLine("sätt valuta");
+                            break;
+                        case 2:
+                            Console.WriteLine("Du loggas ut\nTryck Enter");
+                            Console.Read();
+                            User.Login();
+                            break;
+                        case 3:
+                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
+                            Console.Read();
+                            Environment.Exit(0);
+                            break;
+                    }
                 }
             }
             else
             {
+
+
 
                 Menulist.Add("\tSe konton");
                 Menulist.Add("\tÖverföring");
@@ -51,38 +57,44 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tLåneförfrågan");
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
-                int menuSelected = startMenuCustomer(Menulist);
-
-                switch (menuSelected)
+                while (true)
                 {
-                    case 0:
-                        Console.WriteLine("Konton");
-                        PrintAccounts.PrintAcc();
-                        break;
-                    case 1:
-                        Console.WriteLine("Överföring");
-                        Transfer.TransferMoney();
-                        break;
-                    case 2:
-                        Console.WriteLine("Öppna nytt konto");
-                        break;
-                    case 3:
-                        Console.WriteLine("Överföringshistorik");
-                        break;
-                    case 4:
-                        Console.WriteLine("Låneförfrågan");
-                        //RequestLoan.Loan();
-                        break;
-                    case 5:
-                        Console.WriteLine("Du loggas ut\nTryck Enter");
-                        Console.Read();
-                        User.Login();
-                        break;
-                    case 6:
-                        Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                        Console.Read();
-                        Environment.Exit(0);
-                        break;
+                    int menuSelected = startMenuCustomer(Menulist);
+
+                    switch (menuSelected)
+                    {
+                        case 0:
+                            Console.WriteLine("Konton");
+                            PrintAccounts.PrintAcc();
+                            break;
+                        case 1:
+                            Console.WriteLine("Överföring");
+                            Transfer.TransferMoney();
+                            break;
+                        case 2:
+                            Console.WriteLine("Öppna nytt konto");
+                            SavingsAccount.CreateSavingsAccount();
+                            break;
+                        case 3:
+                            Console.WriteLine("Överföringshistorik");
+                            break;
+                        case 4:
+                            Console.WriteLine("Låneförfrågan");
+                            //RequestLoan.Loan();
+                            break;
+                        case 5:
+                            Console.WriteLine("Du loggas ut\nTryck Enter");
+                            Console.Read();
+                            User.Login();
+                            break;
+                        case 6:
+                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
+                            Console.Read();
+                            Environment.Exit(0);
+                            break;
+
+                    }
+
                 }
             }
         }

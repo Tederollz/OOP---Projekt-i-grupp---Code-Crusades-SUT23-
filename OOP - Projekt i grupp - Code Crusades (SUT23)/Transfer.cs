@@ -23,6 +23,38 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
         public static void TransferMoney()
         {
+            Console.WriteLine("Välj konto att överföra från:");
+            Console.WriteLine("1. Savings");
+            Console.WriteLine("2. Checking");
+
+            if (!int.TryParse(Console.ReadLine(), out int sourceAccountChoice) || (sourceAccountChoice != 1 && sourceAccountChoice != 2))
+            {
+                Console.WriteLine("Ogiltigt val. Överföring avbruten.");
+                return;
+            }
+
+            string sourceAccountType = (sourceAccountChoice == 1) ? "Savings" : "Checking";
+
+            Console.WriteLine("Välj konto att överföra till:");
+            Console.WriteLine("1. Savings");
+            Console.WriteLine("2. Checking");
+
+            if (!int.TryParse(Console.ReadLine(), out int destinationAccountChoice) || (destinationAccountChoice != 1 && destinationAccountChoice != 2))
+            {
+                Console.WriteLine("Ogiltigt val. Överföring avbruten.");
+                return;
+            }
+
+            string destinationAccountType = (destinationAccountChoice == 1) ? "Savings" : "Checking";
+
+            Console.WriteLine("Ange belopp att överföra:");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal amount) || amount <= 0)
+            {
+                Console.WriteLine("Ogiltigt belopp. Överföring avbruten.");
+                return;
+            }
+
+
             // Hitta källkonto
             Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == SourceAccountType);
 

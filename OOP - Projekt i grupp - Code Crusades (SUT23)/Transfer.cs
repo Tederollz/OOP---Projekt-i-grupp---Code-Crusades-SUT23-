@@ -59,7 +59,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == SourceAccountType);
 
             // Hitta målkonto
-            Accounts destinationAccount = UserContext.TargetUser.Accounts.Find(acc => acc.Name == DestinationAccountType);
+            Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == DestinationAccountType);
 
             if (sourceAccount != null && destinationAccount != null && Balance > 0 && sourceAccount.Balance >= Balance)
             {

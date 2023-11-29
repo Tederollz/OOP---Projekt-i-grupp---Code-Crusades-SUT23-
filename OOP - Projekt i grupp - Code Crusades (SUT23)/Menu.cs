@@ -43,7 +43,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
             else
             {
-                
+
                 Menulist.Add("\tSe konton");
                 Menulist.Add("\tÖverföring");
                 Menulist.Add("\tÖppna nytt konto");
@@ -57,6 +57,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 {
                     case 0:
                         Console.WriteLine("Konton");
+                        PrintAccounts.PrintAcc();
                         break;
                     case 1:
                         Console.WriteLine("Överföring");
@@ -84,7 +85,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
         }
         public static int startMenuCustomer(List<string> MenuList)
-            { 
+        {
             int menuSelected = 0;
             while (true)
             {
@@ -115,7 +116,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.Clear();
 
                     return menuSelected;
- 
+
                 }
             }
         }

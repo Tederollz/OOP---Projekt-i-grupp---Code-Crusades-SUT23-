@@ -13,6 +13,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public string Pin { get; set; }
         public bool Role { get; set; }
         public List<Accounts> Accounts { get; set; }
+        public List <Loan> Loans { get; set; }
+
+
 
         public User(string username, string pin, bool role)
         {
@@ -20,6 +23,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Pin = pin;
             Role = role;
             Accounts = new List<Accounts>();
+            Loans = new List<Loan>();
         }
         public static void Login()
         {
@@ -60,6 +64,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 "\n\tProgrammet avslutas....");
             Console.ReadKey();
         }
+
+
     }
 
 

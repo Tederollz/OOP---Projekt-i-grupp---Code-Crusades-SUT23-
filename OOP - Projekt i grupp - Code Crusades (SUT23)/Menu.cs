@@ -71,7 +71,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         break;
                     case 4:
                         Console.WriteLine("Låneförfrågan");
-                        //RequestLoan.Loan();
+                        RequestLoan.Loan();
                         break;
                     case 5:
                         Console.WriteLine("Du loggas ut\nTryck Enter");

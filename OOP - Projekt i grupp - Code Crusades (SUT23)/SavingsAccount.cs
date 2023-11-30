@@ -29,17 +29,24 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             name = "No name added";
             }
             Console.WriteLine("Hur mycket vill du sätta in?");
-
-            decimal insert = Convert.ToDecimal(Console.ReadLine());
-            if (insert < 0)
+            string input = Console.ReadLine();
+            decimal insert;
+            if (!decimal.TryParse(input, out insert) || insert < 0)  
             {
                 Console.WriteLine("Du kan inte sätta in negativt belopp");
                 insert = 0;
             }
+            else
+            {
+                decimal sum;
+                decimal interestRate = 2;
+                sum = insert * interestRate / 100;
+                Console.WriteLine($"Din ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum}Kr.");
+                UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
+            }
+            Console.ReadKey();
 
 
-            decimal interestRate = 5;
-            UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
         }
     }
 }

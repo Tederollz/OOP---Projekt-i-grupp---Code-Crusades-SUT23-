@@ -7,11 +7,8 @@ using test;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
-    internal class PrintAccounts //: Customer
+    internal class PrintAccounts
     {
-       // public PrintAccounts(string username, string pin, bool role) : base(username, pin, role)
-        //{
-        //}
         public static void PrintAcc()
         {
             Console.WriteLine("\n\tDina konton & saldo:");

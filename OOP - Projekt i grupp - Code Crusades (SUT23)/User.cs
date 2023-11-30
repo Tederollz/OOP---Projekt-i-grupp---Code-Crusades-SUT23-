@@ -25,6 +25,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Accounts = new List<Accounts>();
             Loans = new List<Loan>();
         }
+
+        public void AddLoan(Loan loan)
+        {
+            Loans.Add(loan);
+        }
         public static void Login()
         {
             int loginAttempts = 0;

@@ -54,6 +54,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
                 Menulist.Add("\tSe konton");
                 Menulist.Add("\tÖverföring");
+                Menulist.Add("\tÖppna nytt sparkonto");
                 Menulist.Add("\tÖppna nytt konto");
                 Menulist.Add("\tÖverföringshistorik");
                 Menulist.Add("\tLåneförfrågan");
@@ -74,22 +75,26 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             Transfer.TransferMoney();
                             break;
                         case 2:
-                            Console.WriteLine("Öppna nytt konto");
+                            Console.WriteLine("Öppna nytt sparkonto");
                             SavingsAccount.CreateSavingsAccount();
                             break;
                         case 3:
-                            Console.WriteLine("Överföringshistorik");
+                            Console.WriteLine("Öppna nytt konto");
+                            CheckingAccount.CreateAccount();
                             break;
                         case 4:
+                            Console.WriteLine("Överföringshistorik");
+                            break;
+                        case 5:
                             Console.WriteLine("Låneförfrågan");
                             RequestLoan.Loan();
                             break;
-                        case 5:
+                        case 6:
                             Console.WriteLine("Du loggas ut\nTryck Enter");
                             Console.Read();
                             User.Login();
                             break;
-                        case 6:
+                        case 7:
                             Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
                             Console.Read();
                             Environment.Exit(0);

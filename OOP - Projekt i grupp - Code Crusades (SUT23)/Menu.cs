@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using test;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
@@ -11,7 +12,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public static void startMenuForUser()
         {
-            bool IsAdmin = false;
+            bool IsAdmin = UserContext.CurrentUser.Role;
             List<string> Menulist = new List<string>();
 
             if (IsAdmin == true)
@@ -25,6 +26,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 {
                     case 0:
                         Console.WriteLine("Ny användare");
+                        CreateUser.AddUser();
+                        Console.ReadKey();
                         break;
                     case 1:
                         Console.WriteLine("sätt valuta");

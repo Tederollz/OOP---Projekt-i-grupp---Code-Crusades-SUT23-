@@ -22,25 +22,29 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
                 while (true)
+                {
 
-                    case 0:
-                        Console.WriteLine("Ny användare");
-                        CreateUser.AddUser();
-                        Console.ReadKey();
-                        break;
-                    case 1:
-                        Console.WriteLine("sätt valuta");
-                        break;
-                    case 2:
-                        Console.WriteLine("Du loggas ut\nTryck Enter");
-                        Console.Read();
-                        User.Login();
-                        break;
-                    case 3:
-                        Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                        Console.Read();
-                        Environment.Exit(0);
-                        break;
+                    int menuSelected = startMenuCustomer(Menulist);
+                    switch (menuSelected)
+                    {
+                        case 0:
+                            Console.WriteLine("Ny användare");
+                            CreateUser.AddUser();
+                            break;
+                        case 1:
+                            Console.WriteLine("sätt valuta");
+                            break;
+                        case 2:
+                            Console.WriteLine("Du loggas ut\nTryck Enter");
+                            Console.Read();
+                            User.Login();
+                            break;
+                        case 3:
+                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
+                            Console.Read();
+                            Environment.Exit(0);
+                            break;
+                    }
                 }
             }
             else
@@ -56,7 +60,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
                 while (true)
-  
+                {
                     int menuSelected = startMenuCustomer(Menulist);
 
                     switch (menuSelected)
@@ -78,7 +82,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             break;
                         case 4:
                             Console.WriteLine("Låneförfrågan");
-                            //RequestLoan.Loan();
+                            RequestLoan.Loan();
                             break;
                         case 5:
                             Console.WriteLine("Du loggas ut\nTryck Enter");
@@ -92,7 +96,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             break;
 
                     }
-
 
                 }
             }

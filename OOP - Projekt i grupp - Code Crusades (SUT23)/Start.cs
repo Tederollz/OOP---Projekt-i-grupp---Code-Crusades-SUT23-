@@ -8,16 +8,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     internal class Start
     {
-        public static List<Customer> CustomerList { get; set; }
+        public static List<User> CustomerList { get; set; }
 
         public static void StartBank()
         {
             // Initialize the list of customers
-            CustomerList = new List<Customer>
+            CustomerList = new List<User>
             {
-                new Customer("Admin", "Admin1234", true),
+                new User("Admin", "Admin1234", true),
 
-                new Customer("JohnDoe", "1234", false)
+                new User("JohnDoe", "1234", false)
             {
                 Accounts =
                 {
@@ -25,7 +25,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     new Accounts("Checking", 500)
                 }
             },
-            new Customer("JaneSmith", "5678", false)
+            new User("JaneSmith", "5678", false)
             {
                 Accounts =
                 {
@@ -33,7 +33,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     new Accounts("Checking", 800)
                 }
             },
-            new Customer("AliceJones", "9876", false)
+            new User("AliceJones", "9876", false)
             {
                 Accounts =
                 {
@@ -41,7 +41,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     new Accounts("Checking", 1200)
                 }
             },
-            new Customer("BobJohnson", "5432", false)
+            new User("BobJohnson", "5432", false)
             {
                 Accounts =
                 {
@@ -49,7 +49,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     new Accounts("Checking", 300)
                 }
             },
-            new Customer("EveDavis", "8765", false)
+            new User("EveDavis", "8765", false)
             {
                 Accounts =
                 {

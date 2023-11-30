@@ -17,7 +17,7 @@
                 Console.WriteLine("\n\tOgiltigt input. Ange true för admin, false för customer.");
             }
 
-            Customer newCustomer = new Customer(username, pin, role);
+            User newCustomer = new User(username, pin, role);
             newCustomer.Accounts = new List<Accounts>();
 
             Start.CustomerList.Add(newCustomer);

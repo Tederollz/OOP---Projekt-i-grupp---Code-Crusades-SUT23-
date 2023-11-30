@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using test;
@@ -9,72 +10,57 @@ using test;
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
 
-    internal class Transfer : Customer
+    internal class Transfer
     {
-        public static decimal Balance { get; set; }
-        public static string SourceAccountType { get; set; }
-        public static string DestinationAccountType { get; set; }
-
-        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance) : base("TransferCustomer", "", false)
-        {
-            SourceAccountType = sourceAccountType;
-            DestinationAccountType = destinationAccountType;
-            Balance = balance;
-        }
-
         public static void TransferMoney()
         {
-            Console.WriteLine("Välj konto att överföra från:");
-            Console.WriteLine("1. Savings");
-            Console.WriteLine("2. Checking");
+            Console.Clear();
+            Console.WriteLine("\n\t-- Överföring mellan konton --");
+            PrintAccounts.PrintAcc();
 
-            if (!int.TryParse(Console.ReadLine(), out int sourceAccountChoice) || (sourceAccountChoice != 1 && sourceAccountChoice != 2))
+            Console.Write("\n\tVälj konto att ta pengar från: ");
+            string fromAcct = Console.ReadLine();
+
+            Console.Write("\n\tVälj konto att flytta pengar till: ");
+            string toAcct = Console.ReadLine();
+
+            Console.Write("\n\tAnge summa att flytta: ");
+            if (decimal.TryParse(Console.ReadLine(), out decimal amount))
             {
-                Console.WriteLine("Ogiltigt val. Överföring avbruten.");
-                return;
-            }
+                Accounts fromAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == fromAcct);
+                Accounts toAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == toAcct);
 
-            string sourceAccountType = (sourceAccountChoice == 1) ? "Savings" : "Checking";
-
-            Console.WriteLine("Välj konto att överföra till:");
-            Console.WriteLine("1. Savings");
-            Console.WriteLine("2. Checking");
-
-            if (!int.TryParse(Console.ReadLine(), out int destinationAccountChoice) || (destinationAccountChoice != 1 && destinationAccountChoice != 2))
-            {
-                Console.WriteLine("Ogiltigt val. Överföring avbruten.");
-                return;
-            }
-
-            string destinationAccountType = (destinationAccountChoice == 1) ? "Savings" : "Checking";
-
-            Console.WriteLine("Ange belopp att överföra:");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal amount) || amount <= 0)
-            {
-                Console.WriteLine("Ogiltigt belopp. Överföring avbruten.");
-                return;
-            }
-
-            // Hitta källkonto
-            Accounts sourceAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == sourceAccountType);
-
-            // Hitta målkonto
-            Accounts destinationAccount = UserContext.CurrentUser.Accounts.Find(acc => acc.Name == destinationAccountType);
-
-            if (sourceAccount != null && destinationAccount != null && amount > 0 && sourceAccount.Balance >= amount)
-            {
-                sourceAccount.Balance -= amount;
-                destinationAccount.Balance += amount;
-                Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+                if (fromAccount != null && toAccount != null)
+                {
+                    if (fromAccount.Balance >= amount)
+                    {
+                        fromAccount.Balance -= amount;
+                        toAccount.Balance += amount;
+                        Console.WriteLine("\n\tÖverföringen lyckades.");
+                        PrintAccounts.PrintAcc();
+                        Console.WriteLine("\n\tTryck \"Enter\" för att Fortsätta ");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\tError: Du har för lite pengar på kontot.");
+                        Console.WriteLine("\n\tTryck \"Enter\" för att Fortsätta ");
+                        Console.ReadKey();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n\tEtt eller båda konton finns inte.");
+                    Console.WriteLine("\n\tTryck \"Enter\" för att Fortsätta ");
+                    Console.ReadKey();
+                }
             }
             else
             {
-                Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning eller ogiltigt belopp.");
+                Console.WriteLine("\n\tError: Ogiltigt input.");
+                Console.WriteLine("\n\tTryck \"Enter\" för att Fortsätta ");
+                Console.ReadKey();
             }
-            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
-            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
-            
-
         }
         
     }

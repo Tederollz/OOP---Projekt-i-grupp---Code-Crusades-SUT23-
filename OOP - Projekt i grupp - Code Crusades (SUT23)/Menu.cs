@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using test;
 
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
@@ -11,7 +12,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public static void startMenuForUser()
         {
-            bool IsAdmin = false;
+            bool IsAdmin = UserContext.CurrentUser.Role;
             List<string> Menulist = new List<string>();
 
             if (IsAdmin == true)
@@ -21,28 +22,25 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
                 while (true)
-                {
 
-                    int menuSelected = startMenuCustomer(Menulist);
-                    switch (menuSelected)
-                    {
-                        case 0:
-                            Console.WriteLine("Ny användare");
-                            break;
-                        case 1:
-                            Console.WriteLine("sätt valuta");
-                            break;
-                        case 2:
-                            Console.WriteLine("Du loggas ut\nTryck Enter");
-                            Console.Read();
-                            User.Login();
-                            break;
-                        case 3:
-                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                            Console.Read();
-                            Environment.Exit(0);
-                            break;
-                    }
+                    case 0:
+                        Console.WriteLine("Ny användare");
+                        CreateUser.AddUser();
+                        Console.ReadKey();
+                        break;
+                    case 1:
+                        Console.WriteLine("sätt valuta");
+                        break;
+                    case 2:
+                        Console.WriteLine("Du loggas ut\nTryck Enter");
+                        Console.Read();
+                        User.Login();
+                        break;
+                    case 3:
+                        Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
+                        Console.Read();
+                        Environment.Exit(0);
+                        break;
                 }
             }
             else

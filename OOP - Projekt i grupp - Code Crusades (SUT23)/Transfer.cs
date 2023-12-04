@@ -24,7 +24,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Balance = balance;
         }
 
-        public static void TransferMoney()
+        public static void TransferMoney(TransferRequest transferRequest)
         {
             Console.WriteLine("Välj konto att överföra från:");
             int sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts);

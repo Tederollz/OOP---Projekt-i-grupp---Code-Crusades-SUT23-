@@ -11,7 +11,7 @@ using test;
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
 
-    internal class Transfer
+    public class Transfer
     {
         public static decimal Balance { get; set; }
         public static string SourceAccountType { get; set; }
@@ -55,6 +55,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
             Thread.Sleep(1000);
 
+
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
@@ -74,6 +75,10 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
+
+            Transfer transferDetails = new Transfer(SourceAccountType, DestinationAccountType, amount);
+            TransferLog transferLog = new TransferLog(transferDetails);
+            UserContext.CurrentUser.LogTransfer(transferLog);
             Console.ReadKey();
         }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -23,6 +25,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             DestinationAccountType = destinationAccountType;
             Balance = balance;
         }
+
+        
 
         public static void TransferMoney()
         {
@@ -60,6 +64,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             // Hitta målkonto
             var destinationAccount = UserContext.CurrentUser.Accounts[destinationAccountIndex];
 
+            if (sourceAccount.Currency != destinationAccount.Currency)
+            {
+                if (sourceAccount.Currency == "SEK")
+                {
+                    amount = amount * ExchangeRate.CurrentRate;
+                }
+                else if (sourceAccount.Currency == "USD")
+                {
+                    amount = amount / ExchangeRate.CurrentRate;
+                }
+            }
+            
             if (sourceAccount.Balance >= amount)
             {
                 sourceAccount.Balance -= amount;

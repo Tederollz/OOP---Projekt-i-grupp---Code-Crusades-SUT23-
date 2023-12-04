@@ -11,7 +11,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     internal class CheckingAccount : Accounts
     {
         
-        public CheckingAccount(string name, decimal balance) : base(name, balance)
+        public CheckingAccount(string name, decimal balance, string currency) : base(name, balance, currency)
         {
 
         }
@@ -23,6 +23,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 name = "No name added";
             }
+
+            string currency = "SEK";
+
             Console.WriteLine("Hur mycket vill du sätta in?");
             string input = Console.ReadLine();
             decimal insert;
@@ -34,7 +37,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             else
             {
                 
-                UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert));
+                UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert, currency));
             }
             Console.ReadKey();
         }

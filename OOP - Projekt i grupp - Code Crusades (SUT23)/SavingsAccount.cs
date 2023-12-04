@@ -10,7 +10,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     internal class SavingsAccount : Accounts
     {
         public decimal InterestRate { get; private set; }
-        public SavingsAccount(decimal interestRate, string name, decimal balance) : base(name, balance)
+        public SavingsAccount(decimal interestRate, string name, decimal balance, string currency) : base(name, balance, currency)
         {
 
             InterestRate = interestRate;
@@ -28,6 +28,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
             name = "No name added";
             }
+
+            string currency = "SEK";
+
             Console.WriteLine("Hur mycket vill du sätta in?");
             string input = Console.ReadLine();
             decimal insert;
@@ -42,7 +45,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 decimal interestRate = 2;
                 sum = insert * interestRate / 100;
                 Console.WriteLine($"Din ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum}Kr.");
-                UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
+                UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert, currency));
             }
             Console.ReadKey();
 

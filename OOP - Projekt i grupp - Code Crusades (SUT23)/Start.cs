@@ -12,6 +12,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
         public static void StartBank()
         {
+            ExchangeRate.CurrentRate = 0.096m;
+
             // Initialize the list of customers
             CustomerList = new List<User>
             {
@@ -21,40 +23,40 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 Accounts =
                 {
-                    new Accounts("Savings", 1000),
-                    new Accounts("Checking", 500)
+                    new Accounts("Lönekonto(SEK)", 1000, "SEK"),
+                    new Accounts("Lönekonto(USD)", 500, "USD")
                 }
             },
             new User("JaneSmith", "5678", false)
             {
                 Accounts =
                 {
-                    new Accounts("Savings", 1500),
-                    new Accounts("Checking", 800)
+                    new Accounts("Lönekonto(SEK)", 1500, "SEK"),
+                    new Accounts("Lönekonto(USD)", 800, "USD")
                 }
             },
             new User("AliceJones", "9876", false)
             {
                 Accounts =
                 {
-                    new Accounts("Savings", 2000),
-                    new Accounts("Checking", 1200)
+                    new Accounts("Lönekonto(SEK)", 2000, "SEK"),
+                    new Accounts("Lönekonto(USD)", 1200, "USD")
                 }
             },
             new User("BobJohnson", "5432", false)
             {
                 Accounts =
                 {
-                    new Accounts("Savings", 800),
-                    new Accounts("Checking", 300)
+                    new Accounts("Lönekonto(SEK)", 800, "SEK"),
+                    new Accounts("Lönekonto(USD)", 300, "USD")
                 }
             },
             new User("EveDavis", "8765", false)
             {
                 Accounts =
                 {
-                    new Accounts("Savings", 2500),
-                    new Accounts("Checking", 1500)
+                    new Accounts("Lönekonto(SEK)", 2500, "SEK"),
+                    new Accounts("Lönekonto(USD)", 1500, "USD")
                 }
             }
         };

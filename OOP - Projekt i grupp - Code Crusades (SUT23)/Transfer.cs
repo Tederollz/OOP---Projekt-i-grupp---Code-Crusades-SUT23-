@@ -23,13 +23,39 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             DestinationAccountType = destinationAccountType;
             Balance = balance;
         }
-
-        public static void TransferMoney(TransferRequest transferRequest)
+        public enum TransferStep
         {
-            Console.WriteLine("Välj konto att överföra från:");
+            SourceAccount,
+            DestinationAccount
+        }
+
+        private static TransferStep currentStep;
+        private static void DisplayAccountMessage()
+        {
+            Console.Clear();
+
+            switch (currentStep)
+            {
+                case TransferStep.SourceAccount:
+                    Console.WriteLine("Vilket konto vill du överföra ifrån?");
+                    break;
+                case TransferStep.DestinationAccount:
+                    Console.WriteLine("Vilket konto vill du överföra till?");
+                    break;
+                default:
+                    break;
+            }
+
+            Console.ReadKey();
+        }
+        public static void TransferMoney()
+        {
+            currentStep = TransferStep.SourceAccount;
+            DisplayAccountMessage();
             int sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts);
 
-            Console.WriteLine("Välj konto att överföra till:");
+            currentStep = TransferStep.DestinationAccount;
+            DisplayAccountMessage();
             int destinationAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts);
 
             if (sourceAccountIndex == destinationAccountIndex)
@@ -50,10 +76,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.ReadKey();
                 return;
             }
-            // ska denna ligga här? sen 15*60*1000 i sleep.
-            Console.Clear();
-            Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
-            Thread.Sleep(1000);
+           
 
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
@@ -64,7 +87,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 sourceAccount.Balance -= amount;
                 destinationAccount.Balance += amount;
+                Console.Clear();
+                Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
+                Thread.Sleep(15 * 60 * 1000);
                 Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+
             }
             else
             {
@@ -81,12 +108,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public static int DisplayAccountMenu(List<Accounts> accounts)
         {
             int selectedIndex = 0;
+            
             ConsoleKeyInfo key;
 
             do
             {
+
                 Console.Clear();
-                Console.WriteLine("Välj konto:");
+               
 
                 for (int i = 0; i < accounts.Count; i++)
                 {
@@ -102,7 +131,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");
                 }
 
+
                 key = Console.ReadKey();
+
 
                 if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
                 {
@@ -116,6 +147,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             } while (key.Key != ConsoleKey.Enter);
 
             return selectedIndex;
+
+
         }
     }
 }

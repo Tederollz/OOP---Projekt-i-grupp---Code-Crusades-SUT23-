@@ -16,34 +16,41 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             InterestRate = interestRate;
 
         }
-       
+
         public static void CreateSavingsAccount()
         {
 
-            
 
-            Console.WriteLine("Vad vill du döpa ditt konto till?");
+            Console.WriteLine("\nVad vill du döpa ditt konto till?");
             string name = Console.ReadLine();
             if (string.IsNullOrEmpty(name))
             {
-            name = "No name added";
+                name = "Savings Account";                                  //Default name if no name is chosen
             }
-            Console.WriteLine("Hur mycket vill du sätta in?");
-            string input = Console.ReadLine();
-            decimal insert;
-            if (!decimal.TryParse(input, out insert) || insert < 0)  
+            decimal insert = 0;
+            bool validInput = false;
+            do
             {
-                Console.WriteLine("Du kan inte sätta in negativt belopp");
-                insert = 0;
-            }
-            else
-            {
-                decimal sum;
-                decimal interestRate = 2;
-                sum = insert * interestRate / 100;
-                Console.WriteLine($"Din ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum}Kr.");
-                UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
-            }
+
+                Console.WriteLine("\nHur mycket vill du sätta in?");
+                string input = Console.ReadLine();
+                if (decimal.TryParse(input, out insert) && insert > 0)                             // The user has to add atleast 1.  
+                {
+                    validInput = true;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Beloppet du matar in måste vara större än 0.");
+                }
+
+            } while (!validInput);
+
+            decimal interestRate = 2;
+            decimal sum = insert * interestRate / 100;
+            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert:C} har nu skapats.");
+            Console.WriteLine($"\nDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:C}.");
+            UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
             Console.ReadKey();
 
 

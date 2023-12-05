@@ -11,11 +11,11 @@ using test;
 namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
 
-    internal class Transfer
+    public class Transfer
     {
-        public static decimal Balance { get; set; }
-        public static string SourceAccountType { get; set; }
-        public static string DestinationAccountType { get; set; }
+        public decimal Balance { get; set; }
+        public string SourceAccountType { get; set; }
+        public string DestinationAccountType { get; set; }
 
         public Transfer(string sourceAccountType, string destinationAccountType, decimal balance)
         {
@@ -79,6 +79,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
            
 
+
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
@@ -102,6 +103,10 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
+
+            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount);
+            TransferLog transferLog = new TransferLog(transferDetails);
+            UserContext.CurrentUser.LogTransfer(transferLog);
             Console.ReadKey();
         }
 

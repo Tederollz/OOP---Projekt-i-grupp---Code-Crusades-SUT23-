@@ -40,9 +40,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public void PrintTransferHistory()
         {
             
-            foreach (var log in UserContext.CurrentUser.TransferLogs)
+            foreach (var log in TransferLogs)
             {
-                Console.WriteLine($"{log.TransferDetails}\t{log.TransferTime}");                
+                Console.WriteLine($"Från : {log.TransferDetails.SourceAccountType}\t\tTill : {log.TransferDetails.DestinationAccountType}\tBelopp : {log.TransferDetails.Balance}\tDatum : {log.TransferTime}");                
 
             }
             Console.ReadKey();

@@ -83,6 +83,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine("\n\tFör många felaktiga inloggningsförsök. " +
                 "\n\tProgrammet avslutas....");
             Console.ReadKey();
+            Environment.Exit(0);
         }
     }
 

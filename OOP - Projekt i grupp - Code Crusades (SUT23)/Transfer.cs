@@ -35,7 +35,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         private static TransferStep currentStep;
         private static void DisplayAccountMessage()
         {
-            Console.Clear();
+           Console.Clear();
 
             switch (currentStep)
             {

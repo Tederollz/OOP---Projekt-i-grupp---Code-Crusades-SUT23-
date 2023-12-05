@@ -90,12 +90,12 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             break;
                         case 6:
                             Console.WriteLine("Du loggas ut\nTryck Enter");
-                            Console.Read();
+                            Console.ReadKey();
                             User.Login();
                             break;
                         case 7:
                             Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                            Console.Read();
+                            Console.ReadKey();
                             Environment.Exit(0);
                             break;
                     }

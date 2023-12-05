@@ -23,6 +23,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             DestinationAccountType = destinationAccountType;
             Balance = balance;
         }
+        //hålla koll på menyval
         public enum TransferStep
         {
             SourceAccount,

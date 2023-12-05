@@ -15,7 +15,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public List<Accounts> Accounts { get; set; }
         public List <Loan> Loans { get; set; }
 
-
+        public List <TransferLog> TransferLogs { get; set; }
 
         public User(string username, string pin, bool role)
         {
@@ -24,12 +24,30 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Role = role;
             Accounts = new List<Accounts>();
             Loans = new List<Loan>();
+            TransferLogs = new List<TransferLog>();
         }
 
         public void AddLoan(Loan loan)
         {
             Loans.Add(loan);
         }
+
+        public void LogTransfer(TransferLog log)
+        {            
+            TransferLogs.Add(log);
+        }
+
+        public void PrintTransferHistory()
+        {
+            
+            foreach (var log in TransferLogs)
+            {
+                Console.WriteLine($"Från : {log.TransferDetails.SourceAccountType}\t\tTill : {log.TransferDetails.DestinationAccountType}\tBelopp : {log.TransferDetails.Balance}\tDatum : {log.TransferTime}");                
+
+            }
+            Console.ReadKey();
+        }
+
         public static void Login()
         {
             int loginAttempts = 0;

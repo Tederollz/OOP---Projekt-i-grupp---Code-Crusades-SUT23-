@@ -84,6 +84,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             break;
                         case 4:
                             Console.WriteLine("Överföringshistorik");
+                            UserContext.CurrentUser.PrintTransferHistory();
                             break;
                         case 5:
                             Console.WriteLine("Låneförfrågan");

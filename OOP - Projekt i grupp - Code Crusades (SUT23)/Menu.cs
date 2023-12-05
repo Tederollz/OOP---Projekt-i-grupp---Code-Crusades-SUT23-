@@ -52,6 +52,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 Menulist.Add("\tSe konton");
                 Menulist.Add("\tÖverföring");
+                Menulist.Add("\tÖverföring till annan användare");
                 Menulist.Add("\tÖppna nytt sparkonto");
                 Menulist.Add("\tÖppna nytt konto");
                 Menulist.Add("\tÖverföringshistorik");
@@ -73,27 +74,31 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             Transfer.TransferMoney();
                             break;
                         case 2:
+                            Console.WriteLine("Överföring till annan användare");
+                            TransferUser.TransferToUser();                            
+                            break;
+                        case 3:
                             Console.WriteLine("Öppna nytt sparkonto");
                             SavingsAccount.CreateSavingsAccount();
                             break;
-                        case 3:
+                        case 4:
                             Console.WriteLine("Öppna nytt konto");
                             CheckingAccount.CreateAccount();
                             break;
-                        case 4:
+                        case 5:
                             Console.WriteLine("Överföringshistorik");
                             UserContext.CurrentUser.PrintTransferHistory();
                             break;
-                        case 5:
+                        case 6:
                             Console.WriteLine("Låneförfrågan");
                             RequestLoan.Loan();
                             break;
-                        case 6:
+                        case 7:
                             Console.WriteLine("Du loggas ut\nTryck Enter");
                             Console.ReadKey();
                             User.Login();
                             break;
-                        case 7:
+                        case 8:
                             Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
                             Console.ReadKey();
                             Environment.Exit(0);

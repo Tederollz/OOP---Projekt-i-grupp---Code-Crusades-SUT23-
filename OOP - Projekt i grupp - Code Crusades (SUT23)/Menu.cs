@@ -33,6 +33,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             break;
                         case 1:
                             Console.WriteLine("sätt valuta");
+                            ExchangeRate.SetExchangeRate();
                             break;
                         case 2:
                             Console.WriteLine("Du loggas ut\nTryck Enter");
@@ -49,9 +50,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
             else
             {
-
-
-
                 Menulist.Add("\tSe konton");
                 Menulist.Add("\tÖverföring");
                 Menulist.Add("\tÖppna nytt sparkonto");
@@ -100,9 +98,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             Console.Read();
                             Environment.Exit(0);
                             break;
-
                     }
-
                 }
             }
         }
@@ -138,7 +134,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.Clear();
 
                     return menuSelected;
-
                 }
             }
         }

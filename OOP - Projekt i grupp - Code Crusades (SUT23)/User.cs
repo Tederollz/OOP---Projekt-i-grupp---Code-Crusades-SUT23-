@@ -43,7 +43,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             foreach (var log in TransferLogs)
             {
                 Console.WriteLine($"Från : {log.TransferDetails.SourceAccountType}\t\tTill : {log.TransferDetails.DestinationAccountType}\tBelopp : {log.TransferDetails.Balance}\tDatum : {log.TransferTime}");                
-
             }
             Console.ReadKey();
         }
@@ -72,8 +71,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         "\n\tTryck \"Enter\" för att Fortsätta ");
                     Console.ReadKey();
 
-
-
                     Menu.startMenuForUser();
 
                 }
@@ -87,8 +84,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 "\n\tProgrammet avslutas....");
             Console.ReadKey();
         }
-
-
     }
 
 

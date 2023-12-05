@@ -37,7 +37,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             Console.Clear();
 
-
             switch (currentStep)
             {
                 case TransferStep.SourceAccount:
@@ -82,8 +81,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 return;
             }
            
-
-
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
@@ -100,14 +97,13 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     amount = amount / ExchangeRate.CurrentRate;
                 }
             }
-            
             if (sourceAccount.Balance >= amount)
             {
                 sourceAccount.Balance -= amount;
                 destinationAccount.Balance += amount;
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
-                Thread.Sleep(15 * 60 * 1000);
+                //Thread.Sleep(15 * 60 * 1000);
                 Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
 
             }
@@ -137,7 +133,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
 
                 Console.Clear();
-               
 
                 for (int i = 0; i < accounts.Count; i++)
                 {
@@ -153,9 +148,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");
                 }
 
-
                 key = Console.ReadKey();
-
 
                 if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
                 {
@@ -169,7 +162,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             } while (key.Key != ConsoleKey.Enter);
 
             return selectedIndex;
-
 
         }
     }

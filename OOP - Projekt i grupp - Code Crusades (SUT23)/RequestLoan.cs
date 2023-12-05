@@ -11,7 +11,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public static decimal InterestRate = 0.05m;     //A decimal to control the interest rate
 
-
         public static void Loan()
         {
             decimal totalCapital = UserContext.CurrentUser.Accounts.Sum(account => account.Balance);
@@ -30,17 +29,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         UserContext.CurrentUser.AddLoan(newLoan);
                         DepositLoan(loanInput);
                         
-                    } else
+                    } 
+                    else
                     {
                         Console.WriteLine($"Du kan maximalt låna {maxLoan}.");
                     }
-                } else
+                } 
+                else
                 {
                     Console.WriteLine("Fel inmatning, försök igen.");
                 }
             }
         }
-
         public static decimal CalculateInterest(decimal loanAmount)
         {
             return loanAmount * InterestRate;
@@ -57,7 +57,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance:C}");
                 count++;
             }
-
             int chosenAccountIndex;
             while (true)
             {
@@ -71,7 +70,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.WriteLine("Felaktigt val, försök igen.");
                 }
             }
-
             var chosenAccount = UserContext.CurrentUser.Accounts[chosenAccountIndex - 1];
             chosenAccount.Balance += loanAmount;
 
@@ -80,7 +78,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.ReadKey();
             Console.Clear();
             Menu.startMenuForUser();
-
         }
 
         public static void UpdateInterest()

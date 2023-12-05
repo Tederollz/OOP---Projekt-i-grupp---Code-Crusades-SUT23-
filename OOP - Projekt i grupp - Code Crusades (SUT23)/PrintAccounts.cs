@@ -18,7 +18,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine($"\n\t{account.Name}: {account.Balance:C}");
             }
             Console.ReadKey();
-
         }
     }
 }

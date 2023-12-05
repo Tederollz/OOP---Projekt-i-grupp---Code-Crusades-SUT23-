@@ -20,20 +20,17 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public static void CreateSavingsAccount()
         {
 
-
             Console.WriteLine("\nVad vill du döpa ditt konto till?");
             string name = Console.ReadLine();
             if (string.IsNullOrEmpty(name))
             {
-
                 name = "Savings Account";                                  //Default name if no name is chosen
-
             }
+            string currency = "SEK";
             decimal insert = 0;
             bool validInput = false;
             do
             {
-
 
                 Console.WriteLine("\nHur mycket vill du sätta in?");
                 string input = Console.ReadLine();
@@ -53,11 +50,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             decimal sum = insert * interestRate / 100;
             Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert:C} har nu skapats.");
             Console.WriteLine($"\nDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:C}.");
-            UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert));
+            UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert, currency));
 
             Console.ReadKey();
-
-
         }
     }
 }

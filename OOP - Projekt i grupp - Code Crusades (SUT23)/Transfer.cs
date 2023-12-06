@@ -82,8 +82,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
             }
 
-            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
-            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
+            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
+            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
 
             Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount);
             TransferLog transferLog = new TransferLog(transferDetails);

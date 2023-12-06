@@ -47,34 +47,51 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static void DepositLoan(decimal loanAmount)
         {
-            Console.WriteLine("På vilket konto vill du sätta in pengarna?");
+            Console.WriteLine("På vilket konto vill du sätta in pengarna?\n");
 
-            Console.WriteLine("\n\tDina konton & saldo:");
-            int count = 1;
-            foreach (var account in UserContext.CurrentUser.Accounts)
+            Console.WriteLine("\tDina konton & saldo:");
+            Console.ReadKey();
+            int selectedIndex = 0;
+
+            ConsoleKeyInfo key;
+            do
             {
-                
-                Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance:C}");
-                count++;
-            }
-            int chosenAccountIndex;
-            while (true)
-            {
-                if (int.TryParse(Console.ReadLine(), out chosenAccountIndex) &&
-                    chosenAccountIndex > 0 &&
-                    chosenAccountIndex <= UserContext.CurrentUser.Accounts.Count)
+                Console.Clear();
+                Console.WriteLine("Vilket konto vill du lägga lånet på?\n");
+
+                for (int i = 0; i < UserContext.CurrentUser.Accounts.Count; i++)
                 {
-                    break;
-                } else
-                {
-                    Console.WriteLine("Felaktigt val, försök igen.");
+                    if (i == selectedIndex)
+                    {
+                        Console.Write("--> ");
+                    }
+                    else
+                    {
+                        Console.Write("    ");
+                    }
+
+                    Console.WriteLine($"\t{UserContext.CurrentUser.Accounts[i].Name}: {UserContext.CurrentUser.Accounts[i].Balance:C}");
                 }
-            }
-            var chosenAccount = UserContext.CurrentUser.Accounts[chosenAccountIndex - 1];
+
+                key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (key.Key == ConsoleKey.DownArrow && selectedIndex < UserContext.CurrentUser.Accounts.Count - 1)
+                {
+                    selectedIndex++;
+                }
+
+            } while (key.Key != ConsoleKey.Enter);
+
+            var chosenAccount = UserContext.CurrentUser.Accounts[selectedIndex];
             chosenAccount.Balance += loanAmount;
 
-            Console.WriteLine($"\n{loanAmount}sek sattes in på {chosenAccount.Name}.");
-            Console.WriteLine($"Nytt saldo : {chosenAccount.Balance}");
+            Console.Clear();
+            Console.WriteLine($"\n{loanAmount} SEK sattes in på {chosenAccount.Name}.");
+            Console.WriteLine($"Nytt saldo: {chosenAccount.Balance:C}");
             Console.ReadKey();
             Console.Clear();
             Menu.startMenuForUser();
@@ -91,6 +108,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 Console.WriteLine("Felaktig inmatning, ange ett värde mellan 0 och 100.");
             }
+        
+       
         }
     }
+
 }

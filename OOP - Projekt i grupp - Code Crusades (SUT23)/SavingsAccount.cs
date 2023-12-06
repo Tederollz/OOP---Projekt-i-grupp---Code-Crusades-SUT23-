@@ -26,7 +26,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 name = "Savings Account";                                  //Default name if no name is chosen
             }
-            string currency = "SEK";
+            
             decimal insert = 0;
             bool validInput = false;
             do
@@ -38,18 +38,38 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 {
                     validInput = true;
                 }
-                else
+                else if (insert < 0)
                 {
                     Console.Clear();
                     Console.WriteLine("Beloppet du matar in måste vara större än 0.");
                 }
+                else
+                {
+                    Console.WriteLine("Ogiltig inmatning, var god försök igen!");
+                }
 
             } while (!validInput);
 
+            
+            List<string> currencyOpt = new List<string> { "\tSEK", "\tUSD" };
+            Console.WriteLine("Vilken valuta vill du ha? SEK/USD?");
+            int menuSelected = Menu.startMenuCustomer(currencyOpt);
+
+            string currency = null;
+            switch (menuSelected)
+            {
+                case 0:
+                    currency = "SEK";
+                    break;
+                case 1:
+                    currency = "USD";
+                    break;
+            }
+
             decimal interestRate = 2;
             decimal sum = insert * interestRate / 100;
-            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert:C} har nu skapats.");
-            Console.WriteLine($"\nDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:C}.");
+            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert} i valutan {currency} har nu skapats.");
+            Console.WriteLine($"\nDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:0.00} {currency}.");
             UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert, currency));
 
             Console.ReadKey();

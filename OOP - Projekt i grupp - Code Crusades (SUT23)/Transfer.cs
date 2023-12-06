@@ -16,14 +16,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     public class Transfer
     {
         public decimal Balance { get; set; }
+        public string Currency { get; set; }
         public string SourceAccountType { get; set; }
         public string DestinationAccountType { get; set; }
 
-        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance)
+        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance, string currency)
         {
             SourceAccountType = sourceAccountType;
             DestinationAccountType = destinationAccountType;
             Balance = balance;
+            Currency = currency;
         }
 
 
@@ -52,24 +54,30 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.ReadKey();
                 return;
             }
+
+
+
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
             var destinationAccount = UserContext.CurrentUser.Accounts[destinationAccountIndex];
-            if (sourceAccount.Currency != destinationAccount.Currency)
-            {
-                if (sourceAccount.Currency == "SEK")
-                {
-                    amount = amount * ExchangeRate.CurrentRate;
-                }
-                else if (sourceAccount.Currency == "USD")
-                {
-                    amount = amount / ExchangeRate.CurrentRate;
-                }
-            }
+
+
+
             if (sourceAccount.Balance >= amount)
             {
                 sourceAccount.Balance -= amount;
+                if (sourceAccount.Currency != destinationAccount.Currency)
+                {
+                    if (sourceAccount.Currency == "SEK")
+                    {
+                        amount = amount * ExchangeRate.CurrentRate;
+                    }
+                    else if (sourceAccount.Currency == "USD")
+                    {
+                        amount = amount / ExchangeRate.CurrentRate;
+                    }
+                }
                 destinationAccount.Balance += amount;
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
@@ -85,7 +93,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
 
-            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount);
+            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount, sourceAccount.Currency);
             TransferLog transferLog = new TransferLog(transferDetails);
             UserContext.CurrentUser.LogTransfer(transferLog);
             Console.ReadKey();

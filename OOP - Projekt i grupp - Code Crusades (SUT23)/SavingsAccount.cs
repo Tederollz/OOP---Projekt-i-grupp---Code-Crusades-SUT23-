@@ -26,7 +26,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 name = "Savings Account";                                  //Default name if no name is chosen
             }
-            string currency;
+            
             decimal insert = 0;
             bool validInput = false;
             do
@@ -50,16 +50,20 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             } while (!validInput);
 
-            Console.WriteLine("Vilken valuta vill du ha? SEK/USD? \nStandardvalutan är SEK");
-            string currencyChoice = Console.ReadLine().ToUpper();
+            
+            List<string> currencyOpt = new List<string> { "\tSEK", "\tUSD" };
+            Console.WriteLine("Vilken valuta vill du ha? SEK/USD?");
+            int menuSelected = Menu.startMenuCustomer(currencyOpt);
 
-            if (currencyChoice == "SEK" || currencyChoice == "USD")
+            string currency = null;
+            switch (menuSelected)
             {
-                currency = currencyChoice;
-            }
-            else
-            {
-                currency = "SEK";
+                case 0:
+                    currency = "SEK";
+                    break;
+                case 1:
+                    currency = "USD";
+                    break;
             }
 
             decimal interestRate = 2;

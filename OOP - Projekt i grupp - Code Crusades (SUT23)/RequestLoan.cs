@@ -24,6 +24,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     if (loanInput <= maxLoan)
                     {
                         decimal interest = CalculateInterest(loanInput);
+                        Console.Clear();
                         Console.WriteLine($"Räntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}sek");                        
                         Loan newLoan = new Loan(loanInput, InterestRate);
                         UserContext.CurrentUser.AddLoan(newLoan);
@@ -50,7 +51,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine("På vilket konto vill du sätta in pengarna?\n");
 
             Console.WriteLine("\tDina konton & saldo:");
+            int count = 1;
+            foreach (var account in UserContext.CurrentUser.Accounts)
+            {
+
+                Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance:C}");
+                count++;
+                
+            }
+            int chosenAccountIndex;
+            Console.WriteLine(" ");
+            Console.WriteLine("Tryck Enter för att välja konton");
             Console.ReadKey();
+            
             int selectedIndex = 0;
 
             ConsoleKeyInfo key;
@@ -90,7 +103,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             chosenAccount.Balance += loanAmount;
 
             Console.Clear();
-            Console.WriteLine($"\n{loanAmount} SEK sattes in på {chosenAccount.Name}.");
+            Console.WriteLine($"\n{loanAmount} {chosenAccount.Currency} sattes in på {chosenAccount.Name}.");
             Console.WriteLine($"Nytt saldo: {chosenAccount.Balance:C}");
             Console.ReadKey();
             Console.Clear();

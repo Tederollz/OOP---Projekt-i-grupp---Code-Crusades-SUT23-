@@ -23,16 +23,13 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tAvsluta");
                 while (true)
                 {
-
-                    int menuSelected = startMenuCustomer(Menulist);
+                    int menuSelected = startMenuArrow(Menulist);
                     switch (menuSelected)
                     {
                         case 0:
-                            Console.WriteLine("Ny användare");
                             CreateUser.AddUser();
                             break;
                         case 1:
-                            Console.WriteLine("sätt valuta");
                             ExchangeRate.SetExchangeRate();
                             break;
                         case 2:
@@ -61,36 +58,29 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Menulist.Add("\tAvsluta");
                 while (true)
                 {
-                    int menuSelected = startMenuCustomer(Menulist);
+                    int menuSelected = startMenuArrow(Menulist);
 
                     switch (menuSelected)
                     {
                         case 0:
-                            Console.WriteLine("Konton");
                             PrintAccounts.PrintAcc();
                             break;
                         case 1:
-                            Console.WriteLine("Överföring");
                             Transfer.TransferMoney();
                             break;
                         case 2:
-                            Console.WriteLine("Överföring till annan användare");
                             TransferUser.TransferToUser();                            
                             break;
                         case 3:
-                            Console.WriteLine("Öppna nytt sparkonto");
                             SavingsAccount.CreateSavingsAccount();
                             break;
                         case 4:
-                            Console.WriteLine("Öppna nytt konto");
                             CheckingAccount.CreateAccount();
                             break;
                         case 5:
-                            Console.WriteLine("Överföringshistorik");
                             UserContext.CurrentUser.PrintTransferHistory();
                             break;
                         case 6:
-                            Console.WriteLine("Låneförfrågan");
                             RequestLoan.Loan();
                             break;
                         case 7:
@@ -107,7 +97,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 }
             }
         }
-        public static int startMenuCustomer(List<string> MenuList)
+        public static int startMenuArrow(List<string> MenuList)
         {
             int menuSelected = 0;
             while (true)

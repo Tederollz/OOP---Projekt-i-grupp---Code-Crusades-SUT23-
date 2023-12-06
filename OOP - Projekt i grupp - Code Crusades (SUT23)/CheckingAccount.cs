@@ -47,7 +47,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             } while (!validInput);
             List<string> currencyOpt = new List<string> { "\tSEK", "\tUSD" };
             Console.WriteLine("Vilken valuta vill du ha? SEK/USD?");
-            int menuSelected = Menu.startMenuCustomer(currencyOpt);
+            int menuSelected = Menu.startMenuArrow(currencyOpt);
 
             string currency = null;
             switch (menuSelected)

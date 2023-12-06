@@ -25,46 +25,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             DestinationAccountType = destinationAccountType;
             Balance = balance;
         }
-        //hålla koll på menyval
-        public enum TransferStep
-        {
-            SourceAccount,
-            DestinationAccount
-        }
 
-        private static TransferStep currentStep;
-        private static void DisplayAccountMessage()
-        {
-           Console.Clear();
-
-            switch (currentStep)
-            {
-                case TransferStep.SourceAccount:
-                    Console.WriteLine("Vilket konto vill du överföra ifrån?");
-                    break;
-                case TransferStep.DestinationAccount:
-                    Console.WriteLine("Vilket konto vill du överföra till?");
-                    break;
-                default:
-                    break;
-            }
-
-            Console.ReadKey();
-        }
 
         public static void TransferMoney()
         {
-            currentStep = TransferStep.SourceAccount;
-            DisplayAccountMessage();
-            int sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts);
-
-            currentStep = TransferStep.DestinationAccount;
-            DisplayAccountMessage();
-            int destinationAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts);
+            int sourceAccountIndex, destinationAccountIndex;           
+            sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts, "from");
+            Console.Clear();
+            destinationAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts, "to");
+            Console.Clear();
 
             if (sourceAccountIndex == destinationAccountIndex)
             {
-                Console.Clear();
                 Console.WriteLine("Ogiltigt val. Du kan inte överföra pengar från och till samma konto.");
                 Console.ReadKey();
                 return;
@@ -76,16 +48,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             if (!decimal.TryParse(Console.ReadLine(), out amount) || amount <= 0)
             {
                 Console.Clear();
-                Console.WriteLine("Ogiltigt belopp, eller inmating. Överföring avbruten.");
+                Console.WriteLine("Ogiltigt belopp, eller inmatning. Överföring avbruten.");
                 Console.ReadKey();
                 return;
             }
-           
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
             var destinationAccount = UserContext.CurrentUser.Accounts[destinationAccountIndex];
-
             if (sourceAccount.Currency != destinationAccount.Currency)
             {
                 if (sourceAccount.Currency == "SEK")
@@ -105,7 +75,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
                 Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
-
             }
             else
             {
@@ -122,17 +91,27 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.ReadKey();
         }
 
-        //meny
-        public static int DisplayAccountMenu(List<Accounts> accounts)
+        //Meny för överföring mellan konton
+        public static int DisplayAccountMenu(List<Accounts> accounts, string transferType)
         {
             int selectedIndex = 0;
-            
+
             ConsoleKeyInfo key;
 
             do
             {
-
                 Console.Clear();
+                //Håller kvar CW i toppen av valet av konto.
+                if (transferType == "from")
+                {
+                    Console.WriteLine("Vilket konto vill du överföra ifrån?");
+                }
+                else if (transferType == "to")
+                {
+                    Console.WriteLine("Vilket konto vill du överföra till?");
+                }
+
+                Console.WriteLine();
 
                 for (int i = 0; i < accounts.Count; i++)
                 {
@@ -145,7 +124,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         Console.Write("   ");
                     }
 
-                    Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");
+                    Console.WriteLine($"\t{accounts[i].Name}: {accounts[i].Balance:C}");
                 }
 
                 key = Console.ReadKey();
@@ -162,7 +141,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             } while (key.Key != ConsoleKey.Enter);
 
             return selectedIndex;
-
         }
     }
 }

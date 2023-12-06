@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public static void TransferToUser()
         {
-            Console.WriteLine("Välj konto att överföra från:");
-            int sourceAccountIndex = Transfer.DisplayAccountMenu(UserContext.CurrentUser.Accounts);
+           
+            int sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts, "from");
 
             Console.WriteLine("Ange mottagarens användarnamn:");
             string destinationUsername = Console.ReadLine();
@@ -31,8 +32,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 return;
             }
 
-            Console.WriteLine("Välj konto att överföra till:");
-            int destinationAccountIndex = Transfer.DisplayAccountMenu(UserContext.TargetUser.Accounts);
+          
+            int destinationAccountIndex = DisplayAccountMenu(UserContext.TargetUser.Accounts, "to");
 
             Console.WriteLine("Ange belopp att överföra:");
 
@@ -71,7 +72,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 sourceAccount.Balance -= amount;
                 destinationAccount.Balance += amount;
                 Console.WriteLine($"\n\tÖverfört: {amount} SEK från Användare: {UserContext.CurrentUser.Username}" +
-                    $"\n\tkonto: {sourceAccount.Name} " +
+                    $"\n\tifrån konto: {sourceAccount.Name} " +
                     $"\n\ttill Användare: {UserContext.TargetUser.Username} " +
                     $"\n\tkonto: {destinationAccount.Name}");
             }
@@ -81,9 +82,62 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
             }
 
-            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
-            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
+            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
+            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
             Console.ReadKey();
+        }
+
+        //Meny för överföring mellan användare
+        public static int DisplayAccountMenu(List<Accounts> accounts, string transferType)
+        {
+            int selectedIndex = 0;
+
+            ConsoleKeyInfo key;
+
+            do
+            {
+                Console.Clear();
+
+                if (transferType == "from")
+                {
+                    Console.WriteLine("Vilket konto vill du överföra ifrån?");
+                    
+                }
+                else if (transferType == "to")
+                {
+                    Console.WriteLine("Vilket konto vill du överföra till?");
+                }
+
+                Console.WriteLine();
+
+                for (int i = 0; i < accounts.Count; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.Write("--> ");
+                    }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.WriteLine($"\t{accounts[i].Name}: {accounts[i].Balance:C}");
+                }
+
+                key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (key.Key == ConsoleKey.DownArrow && selectedIndex < accounts.Count - 1)
+                {
+                    selectedIndex++;
+                }
+
+            } while (key.Key != ConsoleKey.Enter);
+
+            return selectedIndex;
         }
     }
 }

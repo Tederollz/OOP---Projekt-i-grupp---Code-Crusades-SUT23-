@@ -20,7 +20,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 name = "Checking Account";                                  //Default name if the user doesnt add anything
             }
-            string currency = "SEK";
+            string currency;
             decimal insert = 0;
             bool validInput = false;
             do
@@ -31,15 +31,33 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 {
                     validInput = true;
                 }
+                else if (insert < 0)
+                {
+                    Console.WriteLine("\nBeloppet du matar in måste vara större än 0.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
                 else
                 {
+                    Console.WriteLine("Ogiltig inmatning, var god försök igen.");
+                    Console.ReadKey();
                     Console.Clear();
-                    Console.WriteLine("\nBeloppet du matar in måste vara större än 0.");
                 }
 
             } while (!validInput);
+            Console.WriteLine("Vilken valuta vill du ha? SEK/USD? \nStandardvalutan är SEK");
+            string currencyChoice = Console.ReadLine().ToUpper();
 
-            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert:C} har skapats.");
+            if (currencyChoice == "SEK" || currencyChoice == "USD")
+            {
+                currency = currencyChoice;
+            }
+            else
+            {
+                currency = "SEK";
+            }
+
+            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert} i valutan {currency} har skapats.");
             UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert, currency));
             
             Console.ReadKey();

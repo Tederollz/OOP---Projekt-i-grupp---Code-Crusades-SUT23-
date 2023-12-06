@@ -35,7 +35,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         private static TransferStep currentStep;
         private static void DisplayAccountMessage()
         {
-           Console.Clear();
+            Console.Clear();
 
             switch (currentStep)
             {
@@ -80,26 +80,26 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.ReadKey();
                 return;
             }
-           
+
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
             var destinationAccount = UserContext.CurrentUser.Accounts[destinationAccountIndex];
 
-            if (sourceAccount.Currency != destinationAccount.Currency)
-            {
-                if (sourceAccount.Currency == "SEK")
-                {
-                    amount = amount * ExchangeRate.CurrentRate;
-                }
-                else if (sourceAccount.Currency == "USD")
-                {
-                    amount = amount / ExchangeRate.CurrentRate;
-                }
-            }
             if (sourceAccount.Balance >= amount)
             {
                 sourceAccount.Balance -= amount;
+                if (sourceAccount.Currency != destinationAccount.Currency)
+                {
+                    if (sourceAccount.Currency == "SEK")
+                    {
+                        amount = amount * ExchangeRate.CurrentRate;
+                    }
+                    else if (sourceAccount.Currency == "USD")
+                    {
+                        amount = amount / ExchangeRate.CurrentRate;
+                    }
+                }
                 destinationAccount.Balance += amount;
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
@@ -126,7 +126,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public static int DisplayAccountMenu(List<Accounts> accounts)
         {
             int selectedIndex = 0;
-            
+
             ConsoleKeyInfo key;
 
             do

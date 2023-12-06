@@ -16,14 +16,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     public class Transfer
     {
         public decimal Balance { get; set; }
+        public string Currency { get; set; }
         public string SourceAccountType { get; set; }
         public string DestinationAccountType { get; set; }
 
-        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance)
+        public Transfer(string sourceAccountType, string destinationAccountType, decimal balance, string currency)
         {
             SourceAccountType = sourceAccountType;
             DestinationAccountType = destinationAccountType;
             Balance = balance;
+            Currency = currency;
         }
         //hålla koll på menyval
         public enum TransferStep
@@ -116,7 +118,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} SEK");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} SEK");
 
-            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount);
+            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount, sourceAccount.Currency);
             TransferLog transferLog = new TransferLog(transferDetails);
             UserContext.CurrentUser.LogTransfer(transferLog);
             Console.ReadKey();

@@ -8,13 +8,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     public class TransferLog
     {
-        public Transfer TransferDetails {  get; set; }
+        public string TransferDetails { get; set; }
         public DateTime TransferTime { get; set; }
 
-        public TransferLog(Transfer transferDetails)
+        public TransferLog(string transferDetails)
         {
             TransferDetails = transferDetails;
             TransferTime = DateTime.Now;
         }
     }
+
 }

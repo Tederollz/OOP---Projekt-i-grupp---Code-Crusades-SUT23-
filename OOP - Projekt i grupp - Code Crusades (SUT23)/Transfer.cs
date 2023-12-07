@@ -82,7 +82,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
-                Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+                Console.WriteLine($"Överfört: {amount} {destinationAccount.Currency} från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
             }
             else
             {

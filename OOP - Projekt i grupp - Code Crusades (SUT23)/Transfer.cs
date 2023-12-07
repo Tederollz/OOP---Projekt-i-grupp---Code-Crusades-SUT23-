@@ -93,7 +93,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
 
-            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount, sourceAccount.Currency);
+            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount, destinationAccount.Currency);
             TransferLog transferLog = new TransferLog(transferDetails);
             UserContext.CurrentUser.LogTransfer(transferLog);
             Console.ReadKey();

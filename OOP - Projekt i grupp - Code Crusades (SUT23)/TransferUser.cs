@@ -126,7 +126,17 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         Console.Write("   ");
                     }
 
-                    Console.WriteLine($"\t{accounts[i].Name}: {accounts[i].Balance:0.00} {accounts[i].Currency}");
+
+                    // Visar bara Saldo för källkonto sen enbart namn för målkonto.
+                    if (transferType == "from")
+                    {
+                        Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{accounts[i].Name}");
+                    }
+
                 }
 
                 key = Console.ReadKey();

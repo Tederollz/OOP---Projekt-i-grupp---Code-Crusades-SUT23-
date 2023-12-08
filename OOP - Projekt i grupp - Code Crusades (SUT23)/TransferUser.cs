@@ -75,6 +75,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     $"\n\tifrån konto: {sourceAccount.Name} " +
                     $"\n\ttill Användare: {UserContext.TargetUser.Username} " +
                     $"\n\tkonto: {destinationAccount.Name}");
+
+
+                    string logDetails = $"Från : \t\tAnvändare : {UserContext.CurrentUser.Username} - {sourceAccount.Name}\n" +
+                    $"Till : \t\tAnvändare : {UserContext.TargetUser.Username} - {destinationAccount.Name}\n" +
+                    $"Överfört : \t{amount:0.00} {sourceAccount.Currency}\n" +
+                    $"Datum : \t{DateTime.Now}\n\n";
+
+                    TransferLog transferLog = new TransferLog( logDetails );
+                    UserContext.TargetUser.LogTransfer(transferLog );
+                    UserContext.CurrentUser.LogTransfer(transferLog);
             }
             else
             {

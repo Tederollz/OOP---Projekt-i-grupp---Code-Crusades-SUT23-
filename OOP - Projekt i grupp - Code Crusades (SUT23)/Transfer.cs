@@ -82,7 +82,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
-                Console.WriteLine($"Överfört: {amount} {destinationAccount.Currency} från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+
+                Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+                string logDetails = $"Från : \t\t{sourceAccount.Name}\n" +
+                $"Till : \t\t{destinationAccount.Name}\n" +
+                $"Överfört : \t{amount:0.00} {sourceAccount.Currency}\n" +
+                $"Datum : \t{DateTime.Now}\n\n";
+
+                TransferLog transferLog = new TransferLog(logDetails);
+                UserContext.CurrentUser.LogTransfer(transferLog);
+
             }
             else
             {
@@ -93,9 +102,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
 
-            Transfer transferDetails = new Transfer(sourceAccount.Name, destinationAccount.Name, amount, destinationAccount.Currency);
-            TransferLog transferLog = new TransferLog(transferDetails);
-            UserContext.CurrentUser.LogTransfer(transferLog);
+
+
+
             Console.ReadKey();
         }
 

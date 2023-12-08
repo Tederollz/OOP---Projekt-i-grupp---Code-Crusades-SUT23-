@@ -40,10 +40,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             foreach (var log in TransferLogs)
             {
-                Console.WriteLine($"Från : {log.TransferDetails.SourceAccountType}\t\t" +
-                    $"Till : {log.TransferDetails.DestinationAccountType}\t" +
-                    $"Belopp : {log.TransferDetails.Balance:0.00} {log.TransferDetails.Currency}" +
-                    $"\t\tDatum : {log.TransferTime}");
+
+                Console.WriteLine(log.TransferDetails);
+
             }
             Console.ReadKey();
         }

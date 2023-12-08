@@ -110,4 +110,5 @@ If you log in as an Admin you get transported to the AdminMenu wich has the foll
    Shuts down the program.
 
 Link to our UML diagram
+   
    https://lucid.app/lucidchart/0d1aeb14-297a-4446-b6f1-fcdba2e0a0c2/edit?viewport_loc=-1849%2C-1508%2C4992%2C2319%2CHWEp-vi-RSFO&invitationId=inv_91ced300-da0e-4d9a-b4f3-0d6fb5ca0b66

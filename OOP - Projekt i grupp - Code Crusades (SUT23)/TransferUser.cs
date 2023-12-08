@@ -131,7 +131,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         Console.Write("   ");
                     }
 
-                    // Visar bara Saldo för källkonto sen namn för målkonto.
+                    // Visar bara Saldo för källkonto sen enbart namn för målkonto.
                     if (transferType == "from")
                     {
                         Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");

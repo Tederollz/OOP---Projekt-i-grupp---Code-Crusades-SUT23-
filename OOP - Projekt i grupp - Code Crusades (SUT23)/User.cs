@@ -13,9 +13,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public string Pin { get; set; }
         public bool Role { get; set; }
         public List<Accounts> Accounts { get; set; }
-        public List <Loan> Loans { get; set; }
-
-        public List <TransferLog> TransferLogs { get; set; }
+        public List<Loan> Loans { get; set; }
+        public List<TransferLog> TransferLogs { get; set; }
 
         public User(string username, string pin, bool role)
         {
@@ -33,19 +32,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
 
         public void LogTransfer(TransferLog log)
-        {            
+        {
             TransferLogs.Add(log);
         }
 
         public void PrintTransferHistory()
         {
-            
             foreach (var log in TransferLogs)
             {
                 Console.WriteLine($"Från : {log.TransferDetails.SourceAccountType}\t\t" +
                     $"Till : {log.TransferDetails.DestinationAccountType}\t" +
                     $"Belopp : {log.TransferDetails.Balance:0.00} {log.TransferDetails.Currency}" +
-                    $"\t\tDatum : {log.TransferTime}");                
+                    $"\t\tDatum : {log.TransferTime}");
             }
             Console.ReadKey();
         }
@@ -56,13 +54,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             Console.Clear();
             Console.WriteLine("\n\tVälkommen till Bankomaten!");
+
             while (loginAttempts < 3)
             {
                 Console.Write("\n\tAnge ditt Användar-ID: ");
                 string username = Console.ReadLine();
 
                 Console.Write("\n\tAnge din pinkod: ");
-                string pin = Console.ReadLine();
+                string pin = GetPassword();
 
                 User UserLogin = Start.CustomerList.Find(u => u.Username == username && u.Pin == pin);
 
@@ -75,7 +74,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     Console.ReadKey();
 
                     Menu.startMenuForUser();
-
                 }
                 else
                 {
@@ -83,10 +81,38 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     loginAttempts++;
                 }
             }
+
             Console.WriteLine("\n\tFör många felaktiga inloggningsförsök. " +
                 "\n\tProgrammet avslutas....");
             Console.ReadKey();
             Environment.Exit(0);
+        }
+
+        private static string GetPassword()
+        {
+            string password = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Enter)
+                    break;
+
+                if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password.Substring(0, (password.Length - 1));
+                    Console.Write("\b \b");
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+            } while (true);
+
+            return password;
         }
     }
 

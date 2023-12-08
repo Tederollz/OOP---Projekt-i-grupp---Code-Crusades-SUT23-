@@ -82,6 +82,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.Clear();
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
+
                 Console.WriteLine($"Överfört: {amount} SEK från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
                 string logDetails = $"Från : \t\t{sourceAccount.Name}\n" +
                 $"Till : \t\t{destinationAccount.Name}\n" +
@@ -90,6 +91,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
                 TransferLog transferLog = new TransferLog(logDetails);
                 UserContext.CurrentUser.LogTransfer(transferLog);
+
             }
             else
             {
@@ -99,6 +101,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance} {sourceAccount.Currency}");
             Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance} {sourceAccount.Currency}");
+
+
 
 
             Console.ReadKey();
@@ -155,5 +159,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             return selectedIndex;
         }
+
+
     }
 }

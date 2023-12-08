@@ -76,6 +76,7 @@ If you log in as a user you get transported to the usermenu wich has the followi
 6. Open a savingsaccount
 
    Lets the user open up a savings account, and gets the opportunity to choose the currency,
+
    And gets interestrate on the money they put in.
 8. Open a checking account
 
@@ -107,3 +108,6 @@ If you log in as an Admin you get transported to the AdminMenu wich has the foll
 7. Exit the program
 
    Shuts down the program.
+
+Link to our UML diagram
+   https://lucid.app/lucidchart/0d1aeb14-297a-4446-b6f1-fcdba2e0a0c2/edit?viewport_loc=-1849%2C-1508%2C4992%2C2319%2CHWEp-vi-RSFO&invitationId=inv_91ced300-da0e-4d9a-b4f3-0d6fb5ca0b66

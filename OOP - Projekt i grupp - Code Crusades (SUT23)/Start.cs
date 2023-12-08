@@ -23,40 +23,40 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             {
                 Accounts =
                 {
-                    new Accounts("Lönekonto(SEK)", 1000, "SEK"),
-                    new Accounts("Lönekonto(USD)", 500, "USD")
+                    new Accounts("Lönekonto", 1000, "SEK"),
+                    new Accounts("Lönekonto", 500, "USD")
                 }
             },
             new User("JaneSmith", "5678", false)
             {
                 Accounts =
                 {
-                    new Accounts("Lönekonto(SEK)", 1500, "SEK"),
-                    new Accounts("Lönekonto(USD)", 800, "USD")
+                    new Accounts("Lönekonto", 1500, "SEK"),
+                    new Accounts("Lönekonto", 800, "USD")
                 }
             },
             new User("AliceJones", "9876", false)
             {
                 Accounts =
                 {
-                    new Accounts("Lönekonto(SEK)", 2000, "SEK"),
-                    new Accounts("Lönekonto(USD)", 1200, "USD")
+                    new Accounts("Lönekonto", 2000, "SEK"),
+                    new Accounts("Lönekonto", 1200, "USD")
                 }
             },
             new User("BobJohnson", "5432", false)
             {
                 Accounts =
                 {
-                    new Accounts("Lönekonto(SEK)", 800, "SEK"),
-                    new Accounts("Lönekonto(USD)", 300, "USD")
+                    new Accounts("Lönekonto", 800, "SEK"),
+                    new Accounts("Lönekonto", 300, "USD")
                 }
             },
             new User("EveDavis", "8765", false)
             {
                 Accounts =
                 {
-                    new Accounts("Lönekonto(SEK)", 2500, "SEK"),
-                    new Accounts("Lönekonto(USD)", 1500, "USD")
+                    new Accounts("Lönekonto", 2500, "SEK"),
+                    new Accounts("Lönekonto", 1500, "USD")
                 }
             }
         };

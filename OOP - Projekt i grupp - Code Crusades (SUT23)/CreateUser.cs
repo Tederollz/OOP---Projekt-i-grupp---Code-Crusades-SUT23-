@@ -10,12 +10,7 @@
             Console.Write("\n\tAnge pin: ");
             string pin = Console.ReadLine();
 
-            Console.Write("\n\tAnge roll (true för admin, false för customer): ");
-            bool role;
-            while (!bool.TryParse(Console.ReadLine(), out role))
-            {
-                Console.WriteLine("\n\tOgiltigt input. Ange true för admin, false för customer.");
-            }
+            bool role = false;
 
             User newCustomer = new User(username, pin, role);
             newCustomer.Accounts = new List<Accounts>();

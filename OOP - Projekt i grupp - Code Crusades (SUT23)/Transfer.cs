@@ -83,7 +83,9 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
 
-                Console.WriteLine($"Överfört: {amount:0.00} {destinationAccount.Currency} från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+
+                Console.WriteLine($"Överfört: {amount} {sourceAccount.Currency} från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
+
                 string logDetails = $"Från : \t\t{sourceAccount.Name}\n" +
                 $"Till : \t\t{destinationAccount.Name}\n" +
                 $"Överfört : \t{amount:0.00} {destinationAccount.Currency}\n" +

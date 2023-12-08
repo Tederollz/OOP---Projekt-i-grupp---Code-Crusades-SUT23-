@@ -15,7 +15,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             foreach (var account in UserContext.CurrentUser.Accounts)
             {
-                Console.WriteLine($"\n\t{account.Name}: {account.Balance:C}");
+                Console.WriteLine($"\n\t{account.Name}({account.Currency}): {account.Balance:C}");
             }
             Console.ReadKey();
         }

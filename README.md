@@ -1,7 +1,7 @@
 The Code-crusader bank is a group project for school. The program is coded in C# in .NET. It's a program that resembles a simple bank system.
 There are seventeen different classes in our program.
 
-Classes:
+These are all of our classes:
 Our program has seventeen different classes;
 
 Accounts:
@@ -56,3 +56,63 @@ UserContext:
 This is a class that contains two static Users, one CurrentUsers and one TargetUser.
 
 
+Starting the application: 
+
+The first step when you start the program is the loginscreen: 
+Here the user can choose wether to log in as an admin or a user! 
+The user has 3 chances to log in to the application if its wrong the third time the application will close. 
+
+If you log in as a user you get transported to the usermenu wich has the following choices: 
+
+1. View Accounts
+
+   Prints out all the current accounts for the logged in user
+3. Transfer
+
+   Lets the user transfer money between its own accounts
+4. Transfer to another user
+
+   Lets the user transfer money to another user that has accounts in the bank
+6. Open a savingsaccount
+
+   Lets the user open up a savings account, and gets the opportunity to choose the currency,
+
+   And gets interestrate on the money they put in.
+8. Open a checking account
+
+    Lets the user open up a checking account, and gets the opportunity to choose the currency
+10. Transfer history
+
+     Shows all the logged transfers the user has made.
+12. Loan request
+
+    Lets the user request a loan thats not exceeds the amount of the users balance * five. 
+14. Log out
+
+    Logs out, and returns to the start page.
+16. Exit the program
+
+    Shuts down the program.
+
+If you log in as an Admin you get transported to the AdminMenu wich has the following choices: 
+
+1. Create new user
+
+   Lets the Admin create a new user with unique username and password
+3. Set exchangerates
+
+   Lets the admin set the exchangerates for the current currencies
+5. Log out
+
+   Logs out, and returns to the start page.
+7. Exit the program
+
+   Shuts down the program.
+
+Link to our UML diagram
+   
+   https://lucid.app/lucidchart/0d1aeb14-297a-4446-b6f1-fcdba2e0a0c2/edit?viewport_loc=-1849%2C-1508%2C4992%2C2319%2CHWEp-vi-RSFO&invitationId=inv_91ced300-da0e-4d9a-b4f3-0d6fb5ca0b66
+
+Link to our Scrum board wich we made in Trello
+
+https://trello.com/b/WPAKfdAF/projekt-oop

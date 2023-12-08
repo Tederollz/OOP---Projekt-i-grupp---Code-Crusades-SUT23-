@@ -9,6 +9,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 {
     public class User
     {
+        
+
         public string Username { get; set; }
         public string Pin { get; set; }
         public bool Role { get; set; }
@@ -38,13 +40,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
         public void PrintTransferHistory()
         {
+          
             foreach (var log in TransferLogs)
             {
 
                 Console.WriteLine(log.TransferDetails);
-
+                
             }
+           
+
             Console.ReadKey();
+
+            
         }
 
         public static void Login()

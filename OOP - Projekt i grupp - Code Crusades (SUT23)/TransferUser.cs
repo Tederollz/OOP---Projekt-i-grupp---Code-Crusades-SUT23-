@@ -12,7 +12,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
     {
         public static void TransferToUser()
         {
-           
+
             int sourceAccountIndex = DisplayAccountMenu(UserContext.CurrentUser.Accounts, "from");
 
             Console.WriteLine("Ange mottagarens användarnamn:");
@@ -24,15 +24,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 UserContext.TargetUser = destinationUser;
                 Console.WriteLine($"\n\tAnvändaren med användarnamn {destinationUsername} hittades. Överföring fortsätter.");
                 Console.ReadKey();
-            }
-            else
+            } else
             {
                 Console.WriteLine($"\n\tAnvändaren med användarnamn {destinationUsername} hittades inte. Överföring avbruten.");
                 Console.ReadKey();
                 return;
             }
 
-          
+
             int destinationAccountIndex = DisplayAccountMenu(UserContext.TargetUser.Accounts, "to");
 
             Console.WriteLine("Ange belopp att överföra:");
@@ -55,38 +54,36 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             // Hitta målkonto
             var destinationAccount = UserContext.TargetUser.Accounts[destinationAccountIndex];
 
-            if (sourceAccount.Currency != destinationAccount.Currency)
-            {
-                if (sourceAccount.Currency == "SEK")
-                {
-                    amount = amount * ExchangeRate.CurrentRate;
-                }
-                else if (sourceAccount.Currency == "USD")
-                {
-                    amount = amount / ExchangeRate.CurrentRate;
-                }
-            }
 
             if (sourceAccount.Balance >= amount)
             {
                 sourceAccount.Balance -= amount;
+                if (sourceAccount.Currency != destinationAccount.Currency)
+                {
+                    if (sourceAccount.Currency == "SEK")
+                    {
+                        amount = amount * ExchangeRate.CurrentRate;
+                    } else if (sourceAccount.Currency == "USD")
+                    {
+                        amount = amount / ExchangeRate.CurrentRate;
+                    }
+                }
                 destinationAccount.Balance += amount;
-                Console.WriteLine($"\n\tÖverfört: {amount} SEK från Användare: {UserContext.CurrentUser.Username}" +
+                Console.WriteLine($"\n\tÖverfört: {amount:0.00} {destinationAccount.Currency} från Användare: {UserContext.CurrentUser.Username}" +
                     $"\n\tifrån konto: {sourceAccount.Name} " +
                     $"\n\ttill Användare: {UserContext.TargetUser.Username} " +
                     $"\n\tkonto: {destinationAccount.Name}");
 
 
-                    string logDetails = $"Från : \t\tAnvändare : {UserContext.CurrentUser.Username} - {sourceAccount.Name}\n" +
-                    $"Till : \t\tAnvändare : {UserContext.TargetUser.Username} - {destinationAccount.Name}\n" +
-                    $"Överfört : \t{amount:0.00} {sourceAccount.Currency}\n" +
-                    $"Datum : \t{DateTime.Now}\n\n";
+                string logDetails = $"Från : \t\tAnvändare : {UserContext.CurrentUser.Username} - {sourceAccount.Name}\n" +
+                $"Till : \t\tAnvändare : {UserContext.TargetUser.Username} - {destinationAccount.Name}\n" +
+                $"Överfört : \t{amount:0.00} {destinationAccount.Currency}\n" +
+                $"Datum : \t{DateTime.Now}\n\n";
 
-                    TransferLog transferLog = new TransferLog( logDetails );
-                    UserContext.TargetUser.LogTransfer(transferLog );
-                    UserContext.CurrentUser.LogTransfer(transferLog);
-            }
-            else
+                TransferLog transferLog = new TransferLog(logDetails);
+                UserContext.TargetUser.LogTransfer(transferLog);
+                UserContext.CurrentUser.LogTransfer(transferLog);
+            } else
             {
                 Console.Clear();
                 Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
@@ -111,9 +108,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 if (transferType == "from")
                 {
                     Console.WriteLine("Vilket konto vill du överföra ifrån?");
-                    
-                }
-                else if (transferType == "to")
+
+                } else if (transferType == "to")
                 {
                     Console.WriteLine("Vilket konto vill du överföra till?");
                 }
@@ -125,13 +121,22 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     if (i == selectedIndex)
                     {
                         Console.Write("--> ");
-                    }
-                    else
+                    } else
                     {
                         Console.Write("   ");
                     }
 
-                    Console.WriteLine($"\t{accounts[i].Name}: {accounts[i].Balance:C}");
+
+                    // Visar bara Saldo för källkonto sen enbart namn för målkonto.
+                    if (transferType == "from")
+                    {
+                        Console.WriteLine($"{accounts[i].Name}: {accounts[i].Balance:C}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{accounts[i].Name}");
+                    }
+
                 }
 
                 key = Console.ReadKey();
@@ -139,8 +144,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
                 {
                     selectedIndex--;
-                }
-                else if (key.Key == ConsoleKey.DownArrow && selectedIndex < accounts.Count - 1)
+                } else if (key.Key == ConsoleKey.DownArrow && selectedIndex < accounts.Count - 1)
                 {
                     selectedIndex++;
                 }

@@ -14,7 +14,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {}
         public static void CreateAccount()
         {
-            Console.WriteLine("\nVad vill du döpa ditt konto till?");
+            Console.Write("\n\tVad vill du döpa ditt konto till: ");
             string name = Console.ReadLine();
             if (string.IsNullOrEmpty(name))
             {
@@ -25,7 +25,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             bool validInput = false;
             do
             {
-                Console.WriteLine("\nHur mycket vill du sätta in?");
+                Console.Write("\n\tHur mycket vill du sätta in: ");
                 string input = Console.ReadLine();
                 if (decimal.TryParse(input, out insert) && insert > 0)                             // The user has to add atleast 1.  
                 {
@@ -33,20 +33,22 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 }
                 else if (insert < 0)
                 {
-                    Console.WriteLine("\nBeloppet du matar in måste vara större än 0.");
+                    Console.WriteLine("\n\tBeloppet du matar in måste vara större än 0.");
                     Console.ReadKey();
                     Console.Clear();
                 }
                 else
                 {
-                    Console.WriteLine("Ogiltig inmatning, var god försök igen.");
+                    Console.WriteLine("\n\tOgiltig inmatning, var god försök igen.");
                     Console.ReadKey();
                     Console.Clear();
                 }
 
             } while (!validInput);
             List<string> currencyOpt = new List<string> { "\tSEK", "\tUSD" };
-            Console.WriteLine("Vilken valuta vill du ha? SEK/USD?");
+            Console.WriteLine("\n\tVilken valuta vill du ha?" +
+                "\n\tTryck Enter för att göra ditt val.");
+            Console.ReadKey();
             int menuSelected = Menu.startMenuArrow(currencyOpt);
 
             string currency = null;
@@ -60,7 +62,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     break;
             }
 
-            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert} i valutan {currency} har skapats.");
+            Console.WriteLine($"\n\tDitt nya konto: \"{name}\" med beloppet: {Math.Round(insert, 2 )} {currency} har skapats.");
             UserContext.CurrentUser.Accounts.Add(new CheckingAccount(name, insert, currency));
             
             Console.ReadKey();

@@ -20,7 +20,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         public static void CreateSavingsAccount()
         {
 
-            Console.WriteLine("\nVad vill du döpa ditt konto till?");
+            Console.Write("\n\tVad vill du döpa ditt konto till: ");
             string name = Console.ReadLine();
             if (string.IsNullOrEmpty(name))
             {
@@ -32,7 +32,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             do
             {
 
-                Console.WriteLine("\nHur mycket vill du sätta in?");
+                Console.Write("\n\tHur mycket vill du sätta in: ");
                 string input = Console.ReadLine();
                 if (decimal.TryParse(input, out insert) && insert > 0)                             // The user has to add atleast 1.  
                 {
@@ -41,18 +41,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 else if (insert < 0)
                 {
                     Console.Clear();
-                    Console.WriteLine("Beloppet du matar in måste vara större än 0.");
+                    Console.WriteLine("\n\tBeloppet du matar in måste vara större än 0.");
                 }
                 else
                 {
-                    Console.WriteLine("Ogiltig inmatning, var god försök igen!");
+                    Console.WriteLine("\n\tOgiltig inmatning, var god försök igen!");
                 }
 
             } while (!validInput);
 
             
             List<string> currencyOpt = new List<string> { "\tSEK", "\tUSD" };
-            Console.WriteLine("Vilken valuta vill du ha? SEK/USD?");
+            Console.WriteLine("\n\tVilken valuta vill du ha?" +
+                "\n\tTryck Enter för att göra ditt val.");
             int menuSelected = Menu.startMenuArrow(currencyOpt);
 
             string currency = null;
@@ -68,8 +69,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             decimal interestRate = 2;
             decimal sum = insert * interestRate / 100;
-            Console.WriteLine($"\nDitt nya konto: *{name}* med beloppet: {insert} i valutan {currency} har nu skapats.");
-            Console.WriteLine($"\nDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:0.00} {currency}.");
+            Console.WriteLine($"\n\tDitt nya konto: \"{name}\" med beloppet: {Math.Round(insert, 2)} {currency} har nu skapats.");
+            Console.WriteLine($"\n\tDin ränta på pengarna är just nu {interestRate}% och din ökning per år är {sum:0.00} {currency}.");
             UserContext.CurrentUser.Accounts.Add(new SavingsAccount(interestRate, name, insert, currency));
 
             Console.ReadKey();

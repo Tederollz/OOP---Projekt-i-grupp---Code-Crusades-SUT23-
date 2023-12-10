@@ -18,6 +18,7 @@
             Start.CustomerList.Add(newCustomer);
 
             Console.WriteLine($"\n\tAnvändare {username} Skapats!");
+            Console.ReadKey();
         }
     }
 }

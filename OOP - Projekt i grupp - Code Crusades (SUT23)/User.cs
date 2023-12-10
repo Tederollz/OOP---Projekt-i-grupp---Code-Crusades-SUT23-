@@ -43,19 +43,16 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
           
             foreach (var log in TransferLogs)
             {
-
                 Console.WriteLine(log.TransferDetails);
-                
             }
            
-
             Console.ReadKey();
-
             
         }
 
         public static void Login()
         {
+            Logo.CreateLogo();
             int loginAttempts = 0;
 
             Console.Clear();
@@ -75,7 +72,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 {
                     UserContext.CurrentUser = UserLogin;
                     loginAttempts = 0;
-                    Console.WriteLine($"\n\tInloggning lyckades. Välkommen!" +
+                    Console.WriteLine($"\n" +
+                        $"\n\tInloggning lyckades. Välkommen!" +
                         "\n\tTryck \"Enter\" för att Fortsätta ");
                     Console.ReadKey();
 
@@ -83,7 +81,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 }
                 else
                 {
-                    Console.WriteLine("\n\tFelaktigt användarnamn eller pinkod. Försök igen.");
+                    Console.WriteLine("\n" +
+                        "\n\tFelaktigt användarnamn eller pinkod. Försök igen.");
                     loginAttempts++;
                 }
             }
@@ -93,7 +92,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.ReadKey();
             Environment.Exit(0);
         }
-
         private static string GetPassword()
         {
             string password = "";

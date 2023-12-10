@@ -15,7 +15,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             decimal totalCapital = UserContext.CurrentUser.Accounts.Sum(account => account.Balance);
             decimal maxLoan = totalCapital * 5;
-            Console.WriteLine($"Hur mycket vill du låna?\nDu kan maximalt låna {maxLoan}");
+            Console.Write($"\n\tDu kan maximalt låna {maxLoan}" +
+                $"\n\tAnge önskat belopp: ");
 
             while (true)
             {
@@ -25,20 +26,19 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     {
                         decimal interest = CalculateInterest(loanInput);
                         Console.Clear();
-                        Console.WriteLine($"Räntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}sek");                        
+                        Console.WriteLine($"\n\tRäntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}sek");                        
                         Loan newLoan = new Loan(loanInput, InterestRate);
                         UserContext.CurrentUser.AddLoan(newLoan);
                         DepositLoan(loanInput);
-                        
                     } 
                     else
                     {
-                        Console.WriteLine($"Du kan maximalt låna {maxLoan}.");
+                        Console.WriteLine($"\n\tDu kan maximalt låna {maxLoan}.");
                     }
                 } 
                 else
                 {
-                    Console.WriteLine("Fel inmatning, försök igen.");
+                    Console.WriteLine("\n\tFel inmatning, försök igen.");
                 }
             }
         }
@@ -48,20 +48,20 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         }
         public static void DepositLoan(decimal loanAmount)
         {
-            Console.WriteLine("På vilket konto vill du sätta in pengarna?\n");
+            Console.WriteLine("\n\tPå vilket konto vill du sätta in pengarna?\n");
 
-            Console.WriteLine("\tDina konton & saldo:");
+            Console.WriteLine("\n\tDina konton & saldo:");
             int count = 1;
             foreach (var account in UserContext.CurrentUser.Accounts)
             {
 
-                Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance:C}");
+                Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance} {account.Currency}");
                 count++;
                 
             }
             int chosenAccountIndex;
             Console.WriteLine(" ");
-            Console.WriteLine("Tryck Enter för att välja konton");
+            Console.WriteLine("\n\tTryck Enter för att välja konton");
             Console.ReadKey();
             
             int selectedIndex = 0;
@@ -70,7 +70,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             do
             {
                 Console.Clear();
-                Console.WriteLine("Vilket konto vill du lägga lånet på?\n");
+                Console.WriteLine("\n\tVilket konto vill du lägga lånet på?\n");
 
                 for (int i = 0; i < UserContext.CurrentUser.Accounts.Count; i++)
                 {
@@ -83,7 +83,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                         Console.Write("    ");
                     }
 
-                    Console.WriteLine($"\t{UserContext.CurrentUser.Accounts[i].Name}: {UserContext.CurrentUser.Accounts[i].Balance:C}");
+                    Console.WriteLine($"\t{UserContext.CurrentUser.Accounts[i].Name}: {UserContext.CurrentUser.Accounts[i].Balance}" +
+                        $" {UserContext.CurrentUser.Accounts[i].Currency}");
                 }
 
                 key = Console.ReadKey();
@@ -103,26 +104,33 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             chosenAccount.Balance += loanAmount;
 
             Console.Clear();
-            Console.WriteLine($"\n{loanAmount} {chosenAccount.Currency} sattes in på {chosenAccount.Name}.");
-            Console.WriteLine($"Nytt saldo: {chosenAccount.Balance:C}");
+            Console.WriteLine($"\n\t{loanAmount} {chosenAccount.Currency} sattes in på {chosenAccount.Name}.");
+            Console.WriteLine($"\n\tNytt saldo: {Math.Round(chosenAccount.Balance, 2)}");
             Console.ReadKey();
+
+            string logDetails = $"\n\tFrån : \t\tBank(Lån)\n" +
+                $"\tTill : \t\t{chosenAccount.Name}\n" +
+                $"\tÖverfört : \t{chosenAccount.Balance:0.00} {chosenAccount.Currency}\n" +
+                $"\tDatum : \t{DateTime.Now}\n\n";
+
+            TransferLog transferLog = new TransferLog(logDetails);
+            UserContext.CurrentUser.LogTransfer(transferLog);
+
             Console.Clear();
             Menu.startMenuForUser();
         }
 
         public static void UpdateInterest()
         {
-            Console.WriteLine("Ange den nya räntesatsen (som en procent, t.ex. 5 för 5%):");
+            Console.WriteLine("\n\tAnge den nya räntesatsen (som en procent, t.ex. 5 för 5%):");
             if (decimal.TryParse(Console.ReadLine(), out decimal input) && input >= 0 && input <= 100)
             {
                 InterestRate = input / 100;
-                Console.WriteLine($"Räntesatsen har uppdaterats till {InterestRate * 100}%.");
+                Console.WriteLine($"\n\tRäntesatsen har uppdaterats till {InterestRate * 100}%.");
             } else
             {
-                Console.WriteLine("Felaktig inmatning, ange ett värde mellan 0 och 100.");
+                Console.WriteLine("\n\tFelaktig inmatning, ange ett värde mellan 0 och 100.");
             }
-        
-       
         }
     }
 

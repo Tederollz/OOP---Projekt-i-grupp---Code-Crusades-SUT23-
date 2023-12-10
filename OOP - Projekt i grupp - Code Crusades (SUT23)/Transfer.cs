@@ -28,7 +28,6 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Currency = currency;
         }
 
-
         public static void TransferMoney()
         {
             int sourceAccountIndex, destinationAccountIndex;           
@@ -39,30 +38,26 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             if (sourceAccountIndex == destinationAccountIndex)
             {
-                Console.WriteLine("Ogiltigt val. Du kan inte överföra pengar från och till samma konto.");
+                Console.WriteLine("\n\tOgiltigt val. Du kan inte överföra pengar från och till samma konto.");
                 Console.ReadKey();
                 return;
             }
 
-            Console.WriteLine("Ange belopp att överföra:");
+            Console.Write("\n\tAnge belopp att överföra: ");
 
             decimal amount;
             if (!decimal.TryParse(Console.ReadLine(), out amount) || amount <= 0)
             {
                 Console.Clear();
-                Console.WriteLine("Ogiltigt belopp, eller inmatning. Överföring avbruten.");
+                Console.WriteLine("\n\tOgiltigt belopp, eller inmatning. Överföring avbruten.");
                 Console.ReadKey();
                 return;
             }
-
-
 
             // Hitta källkonto 
             var sourceAccount = UserContext.CurrentUser.Accounts[sourceAccountIndex];
             // Hitta målkonto
             var destinationAccount = UserContext.CurrentUser.Accounts[destinationAccountIndex];
-
-
 
             if (sourceAccount.Balance >= amount)
             {
@@ -80,16 +75,17 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 }
                 destinationAccount.Balance += amount;
                 Console.Clear();
-                Console.WriteLine("Överföringen genomförs. Klart om 15 min.");
+                Console.WriteLine("\n\tÖverföringen genomförs. Klart om 15 min.");
                 //Thread.Sleep(15 * 60 * 1000);
 
+                Console.WriteLine($"\n\tFrån : \t\t{sourceAccount.Name}\n" +
+                $"\tTill : \t\t{destinationAccount.Name}\n" +
+                $"\tÖverfört : \t{amount:0.00} {destinationAccount.Currency}\n");
 
-                Console.WriteLine($"Överfört: {amount} {sourceAccount.Currency} från konto: {sourceAccount.Name} till kontot: {destinationAccount.Name}");
-
-                string logDetails = $"Från : \t\t{sourceAccount.Name}\n" +
-                $"Till : \t\t{destinationAccount.Name}\n" +
-                $"Överfört : \t{amount:0.00} {destinationAccount.Currency}\n" +
-                $"Datum : \t{DateTime.Now}\n\n";
+                string logDetails = $"\n\tFrån : \t\t{sourceAccount.Name}\n" +
+                $"\tTill : \t\t{destinationAccount.Name}\n" +
+                $"\tÖverfört : \t{amount:0.00} {destinationAccount.Currency}\n" +
+                $"\tDatum : \t{DateTime.Now}\n\n";
 
                 TransferLog transferLog = new TransferLog(logDetails);
                 UserContext.CurrentUser.LogTransfer(transferLog);
@@ -98,14 +94,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             else
             {
                 Console.Clear();
-                Console.WriteLine("Överföring misslyckades. Källkontot har inte tillräckligt med täckning.");
+                Console.WriteLine("\n\tÖverföring misslyckades. Källkontot har inte tillräckligt med täckning.");
             }
 
-            Console.WriteLine($"Kvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance:0.00} {sourceAccount.Currency}");
-            Console.WriteLine($"Total balans på {destinationAccount.Name}: {destinationAccount.Balance:0.00} {destinationAccount.Currency}");
-
-
-
+            Console.WriteLine($"\tKvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance:0.00} {sourceAccount.Currency}");
+            Console.WriteLine($"\tTotal balans på {destinationAccount.Name}: {destinationAccount.Balance:0.00} {destinationAccount.Currency}");
 
             Console.ReadKey();
         }
@@ -123,11 +116,11 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 //Håller kvar CW i toppen av valet av konto.
                 if (transferType == "from")
                 {
-                    Console.WriteLine("Vilket konto vill du överföra ifrån?");
+                    Console.WriteLine("\n\tVilket konto vill du överföra ifrån?");
                 }
                 else if (transferType == "to")
                 {
-                    Console.WriteLine("Vilket konto vill du överföra till?");
+                    Console.WriteLine("\n\tVilket konto vill du överföra till?");
                 }
 
                 Console.WriteLine();

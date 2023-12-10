@@ -17,8 +17,8 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
             if (IsAdmin == true)
             {
-                Menulist.Add("\tNy användaer");
-                Menulist.Add("\tsätt Valutakurs");
+                Menulist.Add("\tSkapa ny användare");
+                Menulist.Add("\tsätt valutakurs");
                 Menulist.Add("\tLogga ut");
                 Menulist.Add("\tAvsluta");
                 while (true)
@@ -33,13 +33,15 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             ExchangeRate.SetExchangeRate();
                             break;
                         case 2:
-                            Console.WriteLine("Du loggas ut\nTryck Enter");
-                            Console.Read();
+                            Console.WriteLine("\n\tDu loggas ut" +
+                                "\n\tTryck Enter...");
+                            Console.ReadKey();
                             User.Login();
                             break;
                         case 3:
-                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
-                            Console.Read();
+                            Console.WriteLine("\n\tProgrammet avslutas" +
+                                "\n\tTryck Enter för att avsluta programmet...");
+                            Console.ReadKey();
                             Environment.Exit(0);
                             break;
                     }
@@ -84,12 +86,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                             RequestLoan.Loan();
                             break;
                         case 7:
-                            Console.WriteLine("Du loggas ut\nTryck Enter");
+                            Console.WriteLine("\n\tDu loggas ut" +
+                                "\n\tTryck Enter...");
                             Console.ReadKey();
                             User.Login();
                             break;
                         case 8:
-                            Console.WriteLine("Programmet avslutas\nTryck Enter för att avsluta programmet");
+                            Console.WriteLine("\n\tProgrammet avslutas" +
+                                "\n\tTryck Enter för att avsluta programmet...");
                             Console.ReadKey();
                             Environment.Exit(0);
                             break;
@@ -103,7 +107,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Gör ditt val med piltangenterna och tryck Enter för att välja\n");
+                Console.WriteLine("\n\tGör ditt val med piltangenterna och tryck Enter för att välja:\n");
                 for (int i = 0; i < MenuList.Count; i++)
                 {
                     if (menuSelected == i)

@@ -24,7 +24,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Accounts =
                 {
                     new Accounts("Lönekonto", 1000, "SEK"),
-                    new Accounts("Lönekonto", 500, "USD")
+                    new Accounts("Checking", 500, "USD")
                 }
             },
             new User("JaneSmith", "5678", false)
@@ -32,7 +32,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Accounts =
                 {
                     new Accounts("Lönekonto", 1500, "SEK"),
-                    new Accounts("Lönekonto", 800, "USD")
+                    new Accounts("Checking", 800, "USD")
                 }
             },
             new User("AliceJones", "9876", false)
@@ -40,7 +40,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Accounts =
                 {
                     new Accounts("Lönekonto", 2000, "SEK"),
-                    new Accounts("Lönekonto", 1200, "USD")
+                    new Accounts("Checking", 1200, "USD")
                 }
             },
             new User("BobJohnson", "5432", false)
@@ -48,7 +48,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Accounts =
                 {
                     new Accounts("Lönekonto", 800, "SEK"),
-                    new Accounts("Lönekonto", 300, "USD")
+                    new Accounts("Checking", 300, "USD")
                 }
             },
             new User("EveDavis", "8765", false)
@@ -56,7 +56,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                 Accounts =
                 {
                     new Accounts("Lönekonto", 2500, "SEK"),
-                    new Accounts("Lönekonto", 1500, "USD")
+                    new Accounts("Checking", 1500, "USD")
                 }
             }
         };

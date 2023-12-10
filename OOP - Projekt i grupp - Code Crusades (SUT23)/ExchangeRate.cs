@@ -18,17 +18,18 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
         public static void SetExchangeRate()
         {
-            Console.WriteLine($"\n\tKursen är just ny {CurrentRate} från SEK till USD," +
-                $"\n\tVad viill du ändra kursen till: ");
+            Console.Write($"\n\tKursen är just ny {CurrentRate} från SEK till USD" +
+                $"\n\tVad vill du ändra kursen till: ");
 
             if (decimal.TryParse(Console.ReadLine(), out decimal input))
             {
                 CurrentRate = input;
-                Console.WriteLine($"\n\tDen nya kursen är nu{CurrentRate}");
+                Console.WriteLine($"\n\tDen nya kursen är nu: {Math.Round(CurrentRate, 2)}");
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a valid decimal number.");
+                Console.WriteLine("\n\tInvalid input. Please enter a valid decimal number.");
+                Console.ReadKey();
             }
 
         }

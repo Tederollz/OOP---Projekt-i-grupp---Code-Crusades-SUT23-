@@ -56,7 +56,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
 
                 Console.WriteLine($"\n\t{account.Name}: {account.Balance:0.00} {account.Currency}");
             }
-            int chosenAccountIndex;
+            
             Console.WriteLine(" ");
             Console.WriteLine("\n\tTryck Enter för att välja konton");
             Console.ReadKey();

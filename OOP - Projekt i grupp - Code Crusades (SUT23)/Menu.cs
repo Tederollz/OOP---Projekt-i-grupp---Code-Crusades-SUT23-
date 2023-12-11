@@ -65,7 +65,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     switch (menuSelected)
                     {
                         case 0:
-                            PrintAccounts.PrintAcc();
+                            Accounts.PrintAcc();
                             break;
                         case 1:
                             Transfer.TransferMoney();

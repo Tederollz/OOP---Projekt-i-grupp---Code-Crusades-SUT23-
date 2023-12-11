@@ -33,7 +33,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             }
 
             Console.Clear();
-            destinationAccountIndex = Transfer.DisplayAccountMenu(UserContext.TargetUser.Accounts, "to");
+            destinationAccountIndex = DisplayAccountMenu(UserContext.TargetUser.Accounts, "to");
             Console.Clear();
 
             Console.Write("\n\tAnge belopp att överföra: ");
@@ -93,6 +93,56 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine($"\tKvarvarande balans på {sourceAccount.Name}: {sourceAccount.Balance:0.00} {sourceAccount.Currency}");
 
             Console.ReadKey();
+        }
+        public static int DisplayAccountMenu(List<Accounts> accounts, string transferType)
+        {
+            int selectedIndex = 0;
+
+            ConsoleKeyInfo key;
+
+            do
+            {
+                Console.Clear();
+                //Håller kvar CW i toppen av valet av konto.
+                if (transferType == "from")
+                {
+                    Console.WriteLine("\n\tVilket konto vill du överföra ifrån?");
+                }
+                else if (transferType == "to")
+                {
+                    Console.WriteLine("\n\tVilket konto vill du överföra till?");
+                }
+
+                Console.WriteLine();
+
+                for (int i = 0; i < accounts.Count; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.Write("--> ");
+                    }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.WriteLine($"\t{accounts[i].Name} ({accounts[i].Currency}): ");
+                }
+
+                key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (key.Key == ConsoleKey.DownArrow && selectedIndex < accounts.Count - 1)
+                {
+                    selectedIndex++;
+                }
+
+            } while (key.Key != ConsoleKey.Enter);
+
+            return selectedIndex;
         }
     }
 }

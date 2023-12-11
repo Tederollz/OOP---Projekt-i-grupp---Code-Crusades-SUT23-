@@ -15,7 +15,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
         {
             decimal totalCapital = UserContext.CurrentUser.Accounts.Sum(account => account.Balance);
             decimal maxLoan = totalCapital * 5;
-            Console.Write($"\n\tDu kan maximalt låna {maxLoan}" +
+            Console.Write($"\n\tDu kan maximalt låna {maxLoan:0.00}" +
                 $"\n\tAnge önskat belopp: ");
 
             while (true)
@@ -26,14 +26,14 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
                     {
                         decimal interest = CalculateInterest(loanInput);
                         Console.Clear();
-                        Console.WriteLine($"\n\tRäntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}sek");                        
+                        Console.WriteLine($"\n\tRäntesatsen ligger på {InterestRate * 100}%. Det innebär att räntan för lånet är {interest}");                        
                         Loan newLoan = new Loan(loanInput, InterestRate);
                         UserContext.CurrentUser.AddLoan(newLoan);
                         DepositLoan(loanInput);
                     } 
                     else
                     {
-                        Console.WriteLine($"\n\tDu kan maximalt låna {maxLoan}.");
+                        Console.WriteLine($"\n\tDu kan maximalt låna {maxLoan:0.00}.");
                     }
                 } 
                 else
@@ -51,13 +51,10 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.WriteLine("\n\tPå vilket konto vill du sätta in pengarna?\n");
 
             Console.WriteLine("\n\tDina konton & saldo:");
-            int count = 1;
             foreach (var account in UserContext.CurrentUser.Accounts)
             {
 
-                Console.WriteLine($"\n\t{count}, {account.Name}: {account.Balance} {account.Currency}");
-                count++;
-                
+                Console.WriteLine($"\n\t{account.Name}: {account.Balance:0.00} {account.Currency}");
             }
             int chosenAccountIndex;
             Console.WriteLine(" ");
@@ -104,7 +101,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             chosenAccount.Balance += loanAmount;
 
             Console.Clear();
-            Console.WriteLine($"\n\t{loanAmount} {chosenAccount.Currency} sattes in på {chosenAccount.Name}.");
+            Console.WriteLine($"\n\t{loanAmount:0.00} {chosenAccount.Currency} sattes in på {chosenAccount.Name}.");
             Console.WriteLine($"\n\tNytt saldo: {Math.Round(chosenAccount.Balance, 2)}");
             Console.ReadKey();
 

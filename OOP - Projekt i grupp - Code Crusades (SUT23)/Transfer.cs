@@ -28,6 +28,12 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Currency = currency;
         }
 
+        //TEST-BOOL
+        //För att kontrollera att summan man försöker föra över inte är negativ eller noll.
+        public static bool IsValidTransferAmount(decimal amount)
+        {
+            return amount > 0;
+        }
         public static void TransferMoney()
         {
             int sourceAccountIndex, destinationAccountIndex;           
@@ -46,7 +52,7 @@ namespace OOP___Projekt_i_grupp___Code_Crusades__SUT23_
             Console.Write("\n\tAnge belopp att överföra: ");
 
             decimal amount;
-            if (!decimal.TryParse(Console.ReadLine(), out amount) || amount <= 0)
+            if (!decimal.TryParse(Console.ReadLine(), out amount) || !IsValidTransferAmount(amount))
             {
                 Console.Clear();
                 Console.WriteLine("\n\tOgiltigt belopp, eller inmatning. Överföring avbruten.");
